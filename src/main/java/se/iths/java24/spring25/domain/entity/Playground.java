@@ -1,4 +1,4 @@
-package se.iths.java24.spring25.domain;
+package se.iths.java24.spring25.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
