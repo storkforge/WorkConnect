@@ -11,6 +11,6 @@ public class Playground {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     String name;
+
 }

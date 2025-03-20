@@ -9,6 +9,7 @@ import se.iths.java24.spring25.domain.entity.Playground;
 
 import java.util.List;
 
+
 @Controller
 public class HelloController {
 
