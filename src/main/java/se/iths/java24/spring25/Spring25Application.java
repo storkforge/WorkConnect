@@ -13,16 +13,4 @@ public class Spring25Application {
     public static void main(String[] args) {
         SpringApplication.run(Spring25Application.class, args);
     }
-
-    @Bean
-    CommandLineRunner runner(PlaygroundRepository repository) {
-        return args -> {
-            if (repository.count() == 0) {
-                Playground playground = new Playground();
-                playground.setName("Test playground");
-                repository.save(playground);
-            }
-        };
-
-    }
 }
