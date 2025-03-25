@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hello</title>
 </head>
 <body>
 <h1>Hello from Spring Boot</h1>
+<p th:text="#{greeting}">Placeholder greeting</p>
+
 
 </body>
 </html>
