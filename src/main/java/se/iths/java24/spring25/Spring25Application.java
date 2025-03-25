@@ -10,6 +10,7 @@ import se.iths.java24.spring25.infrastructure.persistence.PlaygroundRepository;
 @SpringBootApplication
 public class Spring25Application {
 
+
     public static void main(String[] args) {
         SpringApplication.run(Spring25Application.class, args);
     }
