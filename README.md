@@ -1,7 +1,6 @@
 ##Future plans:
 
-![Uploading Screenshot 2025-03-26 at 09.34.43.png…]() 
-
+<img width="1440" alt="Screenshot 2025-03-26 at 09 34 43" src="https://github.com/user-attachments/assets/55b2b4b3-ac94-47d6-8022-0cf4b43200c2" />
 
 Vi kommer att bygga ett spring boot project med 6 personer. men först och främst jag vill att du ska skapa ui för oss för ett hemsida. Här ser du 2 bilder om ungefär hur våran app kommer att see ut. 
 
@@ -63,3 +62,5 @@ Lägga till GraphQL API
 
 Testning
 CI/CD med GitHub Actions
+
+
