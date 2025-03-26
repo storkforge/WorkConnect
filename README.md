@@ -1,4 +1,4 @@
-##Future plans:
+## Future plans:
 
 <img width="1440" alt="Screenshot 2025-03-26 at 09 34 43" src="https://github.com/user-attachments/assets/55b2b4b3-ac94-47d6-8022-0cf4b43200c2" />
 
