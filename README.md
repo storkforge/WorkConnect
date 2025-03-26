@@ -1,6 +1,6 @@
 ##Future plans:
 
-![Uploading Screenshot 2025-03-26 at 09.34.43.png…]()
+![Uploading Screenshot 2025-03-26 at 09.34.43.png…]() 
 
 
 Vi kommer att bygga ett spring boot project med 6 personer. men först och främst jag vill att du ska skapa ui för oss för ett hemsida. Här ser du 2 bilder om ungefär hur våran app kommer att see ut. 
