@@ -31,4 +31,15 @@ public class HelloController {
     List<Playground> playground(Model model){
         return playgroundService.getAllPlaygrounds();
     }
+
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String registerPage() {
+        return "register";
+    }
 }
