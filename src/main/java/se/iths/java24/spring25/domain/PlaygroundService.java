@@ -3,7 +3,7 @@ package se.iths.java24.spring25.domain;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import se.iths.java24.spring25.domain.entity.Playground;
-import se.iths.java24.spring25.infrastructure.persistence.PlaygroundRepository;
+import se.iths.java24.spring25.persistence.PlaygroundRepository;
 
 import java.util.List;
 
