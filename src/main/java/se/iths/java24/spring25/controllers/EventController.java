@@ -38,7 +38,7 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
-    // Endpoint to get a work event by ID
+    // Endpoint to get a event by ID
     @GetMapping("/{id}")
     public ResponseEntity<EventDTO> getEventById(@PathVariable Long id) {
         Optional<EventDTO> Event = eventService.getEventById(id);
