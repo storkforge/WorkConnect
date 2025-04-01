@@ -4,6 +4,7 @@ package se.iths.java24.spring25.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,6 +29,7 @@ public class JobOpportunityController {
     private JobOpportunityService jobOpportunityService;
 
     // Endpoint to create a new job Opportunity
+    @PreAuthorize("hasAuthority('CREATE_JOBOPPORTUNITY_AUTHORITY')") // All @PreAuthorize needs to be added to the correct rolles
     @PostMapping
     public ResponseEntity<JobOpportunityDTO> createJobOpportunity(@RequestBody JobOpportunityDTO jobbOpportunityDto) {
         JobOpportunityDTO savedJobOpportunity = jobOpportunityService.createJobOpportunity(jobbOpportunityDto);
@@ -35,6 +37,7 @@ public class JobOpportunityController {
     }
 
     // Endpoint to update a new job Opportunity
+    @PreAuthorize("hasAuthority('UPDATE_JOBOPPORTUNITY_AUTHORITY')")
     @PatchMapping
     public ResponseEntity<Void> updateJobOpportunity(JobOpportunityDTO jobOpportunityDTO) {
         JobOpportunityDTO savedJobOpportunity = jobOpportunityService.updateJobOpportunity(jobOpportunityDTO);
@@ -42,6 +45,7 @@ public class JobOpportunityController {
     }
 
     // Endpoint to get all job Opportunity
+    @PreAuthorize("hasAuthority('READ_JOBOPPORTUNITY_AUTHORITY')")
     @GetMapping
     public ResponseEntity<List<JobOpportunityDTO>> getAllJobOpportunities() {
         List<JobOpportunityDTO> jobOpportunity = jobOpportunityService.getAllJobOpportunities();
@@ -49,12 +53,14 @@ public class JobOpportunityController {
     }
 
     // Endpoint to get a job Opportunity by ID
+    @PreAuthorize("hasAuthority('READ_JOBOPPORTUNITY_AUTHORITY')")
     @GetMapping("/{id}")
     public ResponseEntity<JobOpportunityDTO> getJobOpportunity(@PathVariable Long id) {
         Optional<JobOpportunityDTO> JobOpportunity = jobOpportunityService.getJobOpportunityById(id);
         return JobOpportunity.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+    @PreAuthorize("hasAuthority('DELETE_JOBOPPORTUNITY_AUTHORITY')")
     @DeleteMapping("/id")
     public ResponseEntity <JobOpportunityDTO> deleteJobOpportunityById(@PathVariable Long id) {
         jobOpportunityService.deleteJobOpportunityById(id);
