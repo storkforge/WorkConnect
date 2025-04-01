@@ -15,4 +15,7 @@ public class AuthController {
     public String showHomePage() {
         return "index"; // This will look for index.html in templates folder
     }
+
+
 }
+
