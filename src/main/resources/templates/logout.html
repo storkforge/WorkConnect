@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{logout.title}">Logout - WorkConnect</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f7f9fc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            text-align: center;
+        }
+        .logout-box {
+            margin-top: 2rem;
+        }
+        .logout-box a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 th:text="#{logout.message}">You have been logged out</h1>
+</header>
+
+<main>
+    <p th:text="#{logout.description}">
+        Thank you for using WorkConnect. You can log in again or return to the homepage.
+    </p>
+
+    <div class="logout-box">
+        <a th:href="@{/login}" th:text="#{logout.login.button}">Log in again</a>
+        <a th:href="@{/}" th:text="#{logout.home.button}">Go to Homepage</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 WorkConnect</p>
+</footer>
+
+</body>
+</html>

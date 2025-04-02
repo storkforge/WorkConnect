@@ -13,7 +13,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String showHomePage() {
-        return "index"; // This will look for index.html in templates folder
+        return "home"; // This will look for home.html in templates folder
     }
 
 
