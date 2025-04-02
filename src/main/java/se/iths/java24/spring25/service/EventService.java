@@ -2,7 +2,7 @@ package se.iths.java24.spring25.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.iths.java24.spring25.entity.Event;
+import se.iths.java24.spring25.entity.EventManegment;
 import se.iths.java24.spring25.repository.EventRepository;
 
 import java.util.List;
@@ -14,15 +14,15 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public List<Event> getAllEvents() {
+    public List<EventManegment> getAllEvents() {
         return eventRepository.findAll();
     }
 
-    public Optional<Event> getEventById(Long id) {
+    public Optional<EventManegment> getEventById(Long id) {
         return eventRepository.findById(id);
     }
 
-    public Event createEvent(Event event) {
+    public EventManegment createEvent(EventManegment event) {
         return eventRepository.save(event);
     }
 

@@ -1,14 +1,12 @@
 package se.iths.java24.spring25.entity;
 
 import jakarta.persistence.*;
-import se.iths.java24.spring25.entity.JobOpportunity;
-import se.iths.java24.spring25.entity.Registration;
 
 
 import java.util.List;
 
 @Entity
-public class Event {
+public class EventManegment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

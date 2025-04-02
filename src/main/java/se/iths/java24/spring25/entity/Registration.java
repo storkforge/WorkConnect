@@ -15,7 +15,7 @@ public class Registration {
 
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private Event event;
+    private EventManegment event;
 
     // Getters and setters
     public Long getId() {
@@ -34,11 +34,11 @@ public class Registration {
         this.user = user;
     }
 
-    public Event getEvent() {
+    public EventManegment getEvent() {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public void setEvent(EventManegment event) {
         this.event = event;
     }
 }

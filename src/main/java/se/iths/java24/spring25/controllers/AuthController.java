@@ -8,7 +8,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login"; // This will look for login.html in templates folder
+        return "home"; // This will look for login.html in templates folder
     }
 
     @GetMapping("/")
