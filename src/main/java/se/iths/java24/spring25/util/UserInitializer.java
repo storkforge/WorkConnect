@@ -18,9 +18,9 @@ public class UserInitializer implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         // Create admin user
-        if (userRepository.findByUsername("admin").isEmpty()) {
+        if (userRepository.findByName("admin").isEmpty()) {
             User admin = new User(
                     "admin",
                     passwordEncoder.encode("admin123"),
@@ -30,7 +30,7 @@ public class UserInitializer implements CommandLineRunner {
         }
 
         // Create regular user
-        if (userRepository.findByUsername("user").isEmpty()) {
+        if (userRepository.findByName("user").isEmpty()) {
             User user = new User(
                     "user",
                     passwordEncoder.encode("user123"),

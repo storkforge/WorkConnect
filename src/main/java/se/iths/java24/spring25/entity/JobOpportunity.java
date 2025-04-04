@@ -13,7 +13,7 @@ public class JobOpportunity{
 
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private Event event;
+    private EventManagement event;
 
     // Getters and setters
     public Long getId() {
@@ -32,11 +32,11 @@ public class JobOpportunity{
         this.description = description;
     }
 
-    public Event getEvent() {
+    public EventManagement getEvent() {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public void setEvent(EventManagement event) {
         this.event = event;
     }
 }
