@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class EventManegment {
+public class EventManagement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
