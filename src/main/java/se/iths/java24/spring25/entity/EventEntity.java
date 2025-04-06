@@ -3,21 +3,22 @@ package se.iths.java24.spring25.entity;
 import jakarta.persistence.*;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class EventManagement {
+public class EventEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String date;
+    private LocalDate date;
 
     @OneToMany(mappedBy = "event")
-    private List<Registration> registrations;
+    private List<RegistrationEntity> registrations;
 
     @OneToMany(mappedBy = "event")
-    private List<JobOpportunity> opportunities;
+    private List<JobOpportunityEntity> opportunities;
 
     // Getters and setters
     public Long getId() {
@@ -36,27 +37,27 @@ public class EventManagement {
         this.name = name;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public List<Registration> getRegistrations() {
+    public List<RegistrationEntity> getRegistrations() {
         return registrations;
     }
 
-    public void setRegistrations(List<Registration> registrations) {
+    public void setRegistrations(List<RegistrationEntity> registrations) {
         this.registrations = registrations;
     }
 
-    public List<JobOpportunity> getOpportunities() {
+    public List<JobOpportunityEntity> getOpportunities() {
         return opportunities;
     }
 
-    public void setOpportunities(List<JobOpportunity> opportunities) {
+    public void setOpportunities(List<JobOpportunityEntity> opportunities) {
         this.opportunities = opportunities;
     }
 }

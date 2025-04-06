@@ -2,7 +2,7 @@ package se.iths.java24.spring25.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import se.iths.java24.spring25.entity.Internship;
+import se.iths.java24.spring25.entity.InternshipEntity;
 import se.iths.java24.spring25.service.InternshipService;
 
 import java.util.List;
@@ -16,17 +16,17 @@ public class InternshipController {
     private InternshipService internshipService;
 
     @GetMapping
-    public List<Internship> getAllInternships() {
+    public List<InternshipEntity> getAllInternships() {
         return internshipService.getAllInternships();
     }
 
     @GetMapping("/{id}")
-    public Optional<Internship> getInternshipById(@PathVariable Long id) {
+    public Optional<InternshipEntity> getInternshipById(@PathVariable Long id) {
         return internshipService.getInternshipById(id);
     }
 
     @PostMapping
-    public Internship createInternship(@RequestBody Internship internship) {
+    public InternshipEntity createInternship(@RequestBody InternshipEntity internship) {
         return internshipService.createInternship(internship);
     }
 

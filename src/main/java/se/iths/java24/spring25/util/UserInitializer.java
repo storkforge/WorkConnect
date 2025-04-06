@@ -3,7 +3,7 @@ package se.iths.java24.spring25.util;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import se.iths.java24.spring25.entity.User;
+import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.UserRepository;
 
 @Component
@@ -21,7 +21,7 @@ public class UserInitializer implements CommandLineRunner {
     public void run(String... args) {
         // Create admin user
         if (userRepository.findByName("admin").isEmpty()) {
-            User admin = new User(
+            UserEntity admin = new UserEntity(
                     "admin",
                     passwordEncoder.encode("admin123"),
                     "ROLE_ADMIN"
@@ -31,7 +31,7 @@ public class UserInitializer implements CommandLineRunner {
 
         // Create regular user
         if (userRepository.findByName("user").isEmpty()) {
-            User user = new User(
+            UserEntity user = new UserEntity(
                     "user",
                     passwordEncoder.encode("user123"),
                     "ROLE_USER"

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{app.title}">WorkConnect</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" th:href="@{/public/css/style.css}">
 </head>
 <body>
 
 <header>
-    <img th:src="@{/public/download.png}" alt>
+    <img th:src="@{/public/download.png}" alt="WorkConnect logo">
     <h1 th:text="#{home.welcome}">Welcome to WorkConnect</h1>
 </header>
 

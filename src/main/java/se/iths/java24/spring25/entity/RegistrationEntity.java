@@ -4,18 +4,26 @@ import jakarta.persistence.*;
 
 
 @Entity
-public class Registration {
+public class RegistrationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     +     * The user associated with this registration.
+     +     * Many registrations can belong to one user.
+     +     */
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
+    /**
+     +     * The event associated with this registration.
+     +     * Many registrations can belong to one event.
+     +     */
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private EventManagement event;
+    private EventEntity event;
 
     // Getters and setters
     public Long getId() {
@@ -26,19 +34,19 @@ public class Registration {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public EventManagement getEvent() {
+    public EventEntity getEvent() {
         return event;
     }
 
-    public void setEvent(EventManagement event) {
+    public void setEvent(EventEntity event) {
         this.event = event;
     }
 }

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-public class JobOpportunity{
+public class JobOpportunityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,7 +13,7 @@ public class JobOpportunity{
 
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private EventManagement event;
+    private EventEntity event;
 
     // Getters and setters
     public Long getId() {
@@ -32,11 +32,11 @@ public class JobOpportunity{
         this.description = description;
     }
 
-    public EventManagement getEvent() {
+    public EventEntity getEvent() {
         return event;
     }
 
-    public void setEvent(EventManagement event) {
+    public void setEvent(EventEntity event) {
         this.event = event;
     }
 }
