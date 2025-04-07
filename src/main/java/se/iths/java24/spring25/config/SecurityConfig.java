@@ -8,12 +8,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-//                .csrf(csrf -> csrf.disable()) // Disable CSRF (consider enabling in production)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public/**", "/register", "/login", "/error", "/").permitAll() // Public endpoints
                         .anyRequest().authenticated() // All other endpoints require authentication

@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Dashboard {
+public class DashboardController {
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
@@ -19,4 +19,3 @@ public class Dashboard {
         return "logout"; // ⬅️ Thymeleaf-templaten logout.html
     }
 }
-
