@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{dashboard.title}">Dashboard - WorkConnect</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+
+<header>
+    <h1 th:text="#{dashboard.welcome}">Welcome to WorkConnect</h1>
+</header>
+
+<main>
+    <p th:text="#{dashboard.description}">
+        This is your main dashboard. Choose where you want to go.
+    </p>
+
+    <div class="nav-links">
+        <a th:href="@{/}" th:text="#{dashboard.home.button}">Home</a>
+        <a th:href="@{/login}" th:text="#{dashboard.login.button}">Login</a>
+        <a th:href="@{/logout}" th:text="#{dashboard.logout.button}">Logout</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 WorkConnect</p>
+</footer>
+
+</body>
+</html>

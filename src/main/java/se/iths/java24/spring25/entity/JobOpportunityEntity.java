@@ -3,19 +3,17 @@ package se.iths.java24.spring25.entity;
 import jakarta.persistence.*;
 
 
+
 @Entity
-public class Registration {
+public class JobOpportunityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
-    private Event event;
+    private EventEntity event;
 
     // Getters and setters
     public Long getId() {
@@ -26,19 +24,19 @@ public class Registration {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Event getEvent() {
+    public EventEntity getEvent() {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public void setEvent(EventEntity event) {
         this.event = event;
     }
 }

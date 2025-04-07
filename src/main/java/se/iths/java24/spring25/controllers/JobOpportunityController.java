@@ -2,7 +2,7 @@ package se.iths.java24.spring25.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import se.iths.java24.spring25.entity.JobOpportunity;
+import se.iths.java24.spring25.entity.JobOpportunityEntity;
 import se.iths.java24.spring25.service.JobOpportunityService;
 
 import java.util.List;
@@ -16,17 +16,17 @@ public class JobOpportunityController {
     private JobOpportunityService jobOpportunityService;
 
     @GetMapping
-    public List<JobOpportunity> getAllJobOpportunities() {
+    public List<JobOpportunityEntity> getAllJobOpportunities() {
         return jobOpportunityService.getAllJobOpportunities();
     }
 
     @GetMapping("/{id}")
-    public Optional<JobOpportunity> getJobOpportunityById(@PathVariable Long id) {
+    public Optional<JobOpportunityEntity> getJobOpportunityById(@PathVariable Long id) {
         return jobOpportunityService.getJobOpportunityById(id);
     }
 
     @PostMapping
-    public JobOpportunity createJobOpportunity(@RequestBody JobOpportunity jobOpportunity) {
+    public JobOpportunityEntity createJobOpportunity(@RequestBody JobOpportunityEntity jobOpportunity) {
         return jobOpportunityService.createJobOpportunity(jobOpportunity);
     }
 
