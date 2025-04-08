@@ -20,6 +20,9 @@ public class EventEntity {
     @OneToMany(mappedBy = "event")
     private List<JobOpportunityEntity> opportunities;
 
+    @OneToMany(mappedBy = "event")
+    private List<InternshipEntity> internships;
+
     // Getters and setters
     public Long getId() {
         return id;
@@ -60,4 +63,13 @@ public class EventEntity {
     public void setOpportunities(List<JobOpportunityEntity> opportunities) {
         this.opportunities = opportunities;
     }
-}
+
+    public List<InternshipEntity> getInternships() {
+        return internships;
+    }
+
+        public void setInternships(List < InternshipEntity > internships) {
+            this.internships = internships;
+        }
+    }
+
