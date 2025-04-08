@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users") // Use "users" to avoid conflicts with reserved keywords
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,9 @@ public class User {
     private String password;
 
     // Constructor
-    public User() {}
+    public UserEntity() {}
 
-    public User(String name, String email, String password) {
+    public UserEntity(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;

@@ -1,6 +1,6 @@
 package se.iths.java24.spring25.controllers;
 
-import se.iths.java24.spring25.entity.User;
+import se.iths.java24.spring25.entity.UserEntity;
 
 import se.iths.java24.spring25.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +21,17 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService  .getAllUsers();
+    public List<UserEntity> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUserById(@PathVariable Long id) {
+    public Optional<UserEntity> getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public UserEntity createUser(@RequestBody UserEntity user) {
         return userService.createUser(user);
     }
 
