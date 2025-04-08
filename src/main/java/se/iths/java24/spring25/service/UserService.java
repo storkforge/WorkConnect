@@ -1,9 +1,7 @@
 package se.iths.java24.spring25.service;
 
-
 import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +12,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
+    // Constructor injection - Makes the service easier to test and helps with immutability
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

@@ -1,6 +1,5 @@
 package se.iths.java24.spring25.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.iths.java24.spring25.entity.JobOpportunityEntity;
 import se.iths.java24.spring25.repository.JobOpportunityRepository;
@@ -11,8 +10,11 @@ import java.util.Optional;
 @Service
 public class JobOpportunityService {
 
-    @Autowired
-    private JobOpportunityRepository jobOpportunityRepository;
+    private final JobOpportunityRepository jobOpportunityRepository;
+
+    public JobOpportunityService(JobOpportunityRepository jobOpportunityRepository) {
+        this.jobOpportunityRepository = jobOpportunityRepository;
+    }
 
     public List<JobOpportunityEntity> getAllJobOpportunities() {
         return jobOpportunityRepository.findAll();
