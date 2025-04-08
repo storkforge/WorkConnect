@@ -24,4 +24,20 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+    //    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        // Use BCrypt for secure password hashing
+//        return new BCryptPasswordEncoder();
+//    }
+
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+//        // Configure custom authentication provider
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService);
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//
+//        return new ProviderManager(authProvider);
+//    }
 }

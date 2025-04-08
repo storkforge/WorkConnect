@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{app.title}">WorkConnect</title>
-    <link rel="stylesheet" th:href="@{/public/css/style.css}">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f7f9fc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            text-align: center;
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+        .login-box {
+            margin-top: 2rem;
+        }
+        .login-box a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .lang-switch {
+            margin-top: 1.5rem;
+        }
+        .lang-switch a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <img th:src="@{/public/download.png}" alt="WorkConnect logo">
+    <img th:src="@{/download.png}" >
     <h1 th:text="#{home.welcome}">Welcome to WorkConnect</h1>
 </header>
 
@@ -25,10 +70,10 @@
 </main>
 
 <footer>
-    <p>&copy; <span th:text="${#calendars.format(#calendars.createNow(), 'yyyy')}">2024</span> WorkConnect</p>
+    <p>&copy; 2025 WorkConnect</p>
     <div class="lang-switch">
-        <a th:href="@{/static?lang=en}">🇬🇧 English</a> |
-        <a th:href="@{/static?lang=sv}">🇸🇪 Svenska</a>
+        <a th:href="@{/change-language(lang='en')}">🇬🇧 English</a> |
+        <a th:href="@{/change-language(lang='sv')}">🇸🇪 Svenska</a>
     </div>
 </footer>
 
