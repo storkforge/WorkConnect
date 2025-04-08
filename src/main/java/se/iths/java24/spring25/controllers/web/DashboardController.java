@@ -1,4 +1,4 @@
-package se.iths.java24.spring25.controllers;
+package se.iths.java24.spring25.controllers.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
