@@ -20,7 +20,6 @@
       <p class="lead">
         <span th:text="#{dashboard.description}">This is your main dashboard. Choose where you want to go.</span><br/>
         <span sec:authorize="isAuthenticated()">
-          <strong th:text="'Logged in as: ' + ${#authentication.name}">Logged in as: user</strong>
         </span>
       </p>
     </div>
