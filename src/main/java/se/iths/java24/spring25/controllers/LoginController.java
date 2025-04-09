@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
     @GetMapping("/login")
     public String login(){
-        return "login"; // detta returnerar login.html från templates-mappen
-
+        return "login";
     }
 }

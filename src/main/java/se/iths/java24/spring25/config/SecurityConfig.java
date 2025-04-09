@@ -2,9 +2,6 @@ package se.iths.java24.spring25.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-// Glöm inte att lägga till en PasswordEncoder Bean om du inte redan har det!
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-// import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -26,22 +23,14 @@ public class SecurityConfig {
                 .oauth2Login(oauth2 -> oauth2
                                 .loginPage("/login") // Denna är nu lite redundant men skadar inte
                                 .defaultSuccessUrl("/dashboard", true)
-                        // .failureUrl("/login?error=true") // Valfritt: Vart man ska vid misslyckad OAuth2
+                        // .failureUrl("/login?error=true") //
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout") // Standard URL för att initiera utloggning (POST)
-                        .logoutSuccessUrl("/logout-success?logout") // Omdirigera till en GET endpoint efter lyckad utloggning
-                        .permitAll() // Tillåt alla att komma åt /logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/logout-success?logout")
+                        .permitAll()
                 );
 
         return http.build();
     }
-
-    /*
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        // Måste finnas för att formLogin ska fungera med lösenord
-        return new BCryptPasswordEncoder();
-    }
-    */
 }

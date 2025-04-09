@@ -22,10 +22,10 @@ public class LanguageController {
         Locale newLocale = new Locale(lang);
         localeResolver.setLocale(request, response, newLocale);
 
-        // Hämta referer-headern för att få den tidigare sidan
+
         String referer = request.getHeader("Referer");
 
-        // Om referer finns, återvänd till den sidan, annars till startsidan
+
         return (referer != null) ? "redirect:" + referer : "redirect:/";
     }
 }
