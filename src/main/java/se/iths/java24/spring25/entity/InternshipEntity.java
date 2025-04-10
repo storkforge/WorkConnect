@@ -2,6 +2,8 @@ package se.iths.java24.spring25.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "internships") // Tabellnamn för internships
 public class InternshipEntity {
@@ -14,14 +16,14 @@ public class InternshipEntity {
     private String company;
     private String location;
     private String description;
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     // Konstruktorer
     public InternshipEntity() {}
 
     public InternshipEntity(String title, String company, String location,
-                            String description, String startDate, String endDate) {
+                            String description, LocalDate startDate, LocalDate endDate) {
         this.title = title;
         this.company = company;
         this.location = location;
@@ -71,19 +73,19 @@ public class InternshipEntity {
         this.description = description;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 }
