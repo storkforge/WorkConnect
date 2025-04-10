@@ -15,6 +15,6 @@ public class LogoutController {
         if (lang != null) {
             model.addAttribute("currentLang", new Locale(lang));
         }
-        return "logout";  // Pekar på logout.html
+        return "logout";
     }
 }

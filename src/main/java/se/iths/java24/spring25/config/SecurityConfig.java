@@ -12,32 +12,25 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/**", "/register", "/login", "/error", "/").permitAll() // Public endpoints
-                        .anyRequest().authenticated() // All other endpoints require authentication
+                        .requestMatchers("/public/**", "/register", "/login", "/error", "/", "/css/**", "/js/**", "/images/**", "/download.png").permitAll() // <-- Lade till vanliga statiska resurser och din logo
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/dashboard", true) // Redirect after successful login
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/dashboard", true)
+                                //.failureUrl("/login?error=true") // If needed: error.html, needs to be implemented
+                )
+                .oauth2Login(oauth2 -> oauth2
+                                .loginPage("/login") // Denna är nu lite redundant men skadar inte
+                                .defaultSuccessUrl("/dashboard", true)
+                        // .failureUrl("/login?error=true") //
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/") // Redirect after logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/logout-success?logout")
+                        .permitAll()
                 );
 
         return http.build();
     }
-
-    //    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        // Use BCrypt for secure password hashing
-//        return new BCryptPasswordEncoder();
-//    }
-
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-//        // Configure custom authentication provider
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(passwordEncoder());
-//
-//        return new ProviderManager(authProvider);
-//    }
 }
