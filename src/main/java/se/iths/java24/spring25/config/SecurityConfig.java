@@ -21,7 +21,7 @@ public class SecurityConfig {
                                 //.failureUrl("/login?error=true") // If needed: error.html, needs to be implemented
                 )
                 .oauth2Login(oauth2 -> oauth2
-                                .loginPage("/login") // Denna är nu lite redundant men skadar inte
+                                .loginPage("/login")
                                 .defaultSuccessUrl("/dashboard", true)
                         // .failureUrl("/login?error=true") //
                 )
