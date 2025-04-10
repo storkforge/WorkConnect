@@ -9,7 +9,7 @@ import java.net.URI;
 public class BrowserController implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
-        String url = "http://localhost:8080"; // Öppnar startsidan automatiskt
+        String url = "http://localhost:8080";
 
         if (Desktop.isDesktopSupported()) {
             Desktop.getDesktop().browse(new URI(url));
