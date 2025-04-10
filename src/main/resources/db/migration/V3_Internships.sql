@@ -5,7 +5,7 @@ CREATE TABLE internships
     company     VARCHAR(255),
     location    VARCHAR(255),
     description VARCHAR(255),
-    start_date  VARCHAR(255),
-    end_date    VARCHAR(255),
+    start_date  DATE,
+    end_date    DATE,
     CONSTRAINT pk_internships PRIMARY KEY (id)
 );
