@@ -35,4 +35,7 @@ public class UserService {
     public UserEntity updateUser(UserEntity user ) {
         return userRepository.save(user);
     }
+
+    public void registerUser(String email, String password) {
+    }
 }
