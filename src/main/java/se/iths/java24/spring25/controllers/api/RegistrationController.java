@@ -1,6 +1,5 @@
 package se.iths.java24.spring25.controllers.api;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import se.iths.java24.spring25.service.UserService;
@@ -14,14 +13,20 @@ public class RegistrationController {
         this.userService = userService;
     }
 
+
     @GetMapping("/register")
     public String showRegistrationForm() {
-        return "register";
+        return "register"; // thymeleaf template: register.html
     }
 
+
     @PostMapping("/register")
-    public String handleRegistration(@RequestParam String email, @RequestParam String password) {
-        userService.registerUser(email, password);
+    public String handleRegistration(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String password) {
+
+        userService.registerUser(name, email, password);
         return "redirect:/login?registered";
     }
 }
