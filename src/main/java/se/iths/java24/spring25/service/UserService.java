@@ -32,7 +32,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public UserEntity updateUser(UserEntity user ) {
+    public UserEntity updateUser(UserEntity user) {
         return userRepository.save(user);
     }
 }
