@@ -42,10 +42,20 @@ public class UserService {
 
 
     public void registerUser(String name, String email, String password) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+        if (email == null || !email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+        if (password == null || password.length() < 8) {
+            throw new IllegalArgumentException("Password must be at least 8 characters");
+        }
+
+
         if (userRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("Email already exists");
         }
-
         String hashedPassword = passwordEncoder.encode(password);
         UserEntity user = new UserEntity(name, email, hashedPassword);
         userRepository.save(user);

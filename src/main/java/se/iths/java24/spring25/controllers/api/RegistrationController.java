@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import se.iths.java24.spring25.service.UserService;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 @Controller
 public class RegistrationController {
 
@@ -16,7 +19,7 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String showRegistrationForm() {
-        return "register"; // thymeleaf template: register.html
+        return "register";
     }
 
 
@@ -26,7 +29,11 @@ public class RegistrationController {
             @RequestParam String email,
             @RequestParam String password) {
 
-        userService.registerUser(name, email, password);
-        return "redirect:/login?registered";
+        try {
+            userService.registerUser(name, email, password);
+            return "redirect:/login?registered";
+        } catch (RuntimeException e) {
+            return "redirect:/register?error=" + URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8);
+        }
     }
 }
