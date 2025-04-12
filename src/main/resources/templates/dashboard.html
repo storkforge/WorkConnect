@@ -98,9 +98,11 @@
                          class="h-full w-full object-cover">
                 </div>
                 <div class="pt-12">
-                   <!-- <h2 class="font-bold text-xl" th:text="${user != null ? user.firstName + ' ' + user.lastName : #authentication.name}">User Name</h2>
-                    <p class="text-sm text-gray-500 mt-1" th:text="${user?.title ?: #{profile.add_title}}">Add your title</p>
-                    --> här ligger felet som jag ska lösa.
+                    <!-- Using sec:authentication="name" for potentially more robust name retrieval -->
+                    <h2 class="font-bold text-xl" sec:authentication="name">User Name</h2>
+                    <!-- Simplified title display, relying on default text if null -->
+                    <p class="text-sm text-gray-500 mt-1" th:text="${user?.title}">Add your title</p>
+                    <!-- här ligger felet som jag ska lösa. -->
 
                     <!-- Profile Strength -->
                     <div class="mt-4 space-y-2">
