@@ -3,31 +3,34 @@ package se.iths.java24.spring25.controllers.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import se.iths.java24.spring25.entity.UserEntity;
+import se.iths.java24.spring25.repository.UserRepository;
+
+import java.security.Principal;
+import java.util.Optional;
 
 /**
  * Controller responsible for dashboard-related views and logout functionality.
  */
-@Controller
-public class DashboardController {
 
-    /**
-          * Displays the dashboard page.
-          *
-          * @param model the model to add attributes to
-          * @return the view name for the dashboard
-     */
-    @GetMapping("/dashboard")
-    public String dashboard(Model model) {
-        model.addAttribute("title", "Dashboard");
-        return "dashboard"; // ⬅️ Thymeleaf-templaten dashboard.html
-    }
+    @Controller
+    public class DashboardController {
 
-    /**
-          * Displays the logout success page.
-          *
-          * @param model the model to add attributes to
-          * @return the view name for the logout page
-     */
+        private final UserRepository userRepository;
+
+        public DashboardController(UserRepository userRepository) {
+            this.userRepository = userRepository;
+        }
+
+        @GetMapping("/dashboard")
+        public String showDashboard(Model model, Principal principal) {
+            String email = principal.getName();
+            Optional<UserEntity> user = userRepository.findByEmail(email);
+
+            model.addAttribute("user", user);
+            return "dashboard";
+        }
+
     @GetMapping("/logout-success")
     public String logoutSuccess(Model model) {
         model.addAttribute("message", "You have been logged out successfully.");
