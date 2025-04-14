@@ -17,7 +17,7 @@ public class JobWebController {
         this.jobService = jobService;
     }
 
-    @GetMapping("/jobs/recommended")
+    @GetMapping("/jobs")
     public String showRecommendedJobs(Model model) {
         List<JobOpportunityEntity> jobs = jobService.getAllJobOpportunities(); // Replace with filtered list if needed
         model.addAttribute("jobs", jobs);
