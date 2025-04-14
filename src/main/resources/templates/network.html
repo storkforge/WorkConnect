@@ -156,25 +156,32 @@
         </div>
       </div> </div> </div> </div> </main>
 
-<div th:replace="~{fragments/footer :: footer}">Footer Placeholder</div>
-
 <script>
-  // Ensure the script for the user menu dropdown is available
-  const userMenuButton = document.getElementById('user-menu-button');
-  const userMenu = document.getElementById('user-menu');
-  if (userMenuButton && userMenu) {
-    userMenuButton.addEventListener('click', (event) => {
-      userMenu.classList.toggle('hidden');
-      event.stopPropagation();
-    });
-    document.addEventListener('click', (event) => {
-      if (userMenu && !userMenu.classList.contains('hidden')) {
-        if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
-          userMenu.classList.add('hidden');
+  document.addEventListener("DOMContentLoaded", function () {
+    const userMenuButton = document.getElementById("user-menu-button");
+    const userMenu = document.getElementById("user-menu");
+
+    if (userMenuButton && userMenu) {
+      userMenuButton.addEventListener("click", function (e) {
+        e.stopPropagation(); // Förhindra att klick stängs direkt
+        userMenu.classList.toggle("hidden");
+      });
+
+      // Klick utanför dropdown stänger den
+      document.addEventListener("click", function () {
+        if (!userMenu.classList.contains("hidden")) {
+          userMenu.classList.add("hidden");
         }
-      }
-    });
-  }
+      });
+    }
+  });
+</script>
+
+<div class="mt-4 text-center text-sm">
+  <a th:href="@{/network(lang='en')}" class="text-gray-600 hover:text-gray-900 mx-2">🇬🇧 English</a>
+  <span class="text-gray-400">|</span>
+  <a th:href="@{/network(lang='sv')}" class="text-gray-600 hover:text-gray-900 mx-2">🇸🇪 Svenska</a>
+</div>
 </script>
 </body>
 </html>
