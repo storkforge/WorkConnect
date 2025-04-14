@@ -55,7 +55,8 @@
 
 
         <div class="mt-4">
-            <a href="/jobs" class="text-blue-600 hover:underline mr-4">📂 View Job List</a>
+<!--            <a href="/jobs" class="text-blue-600 hover:underline mr-4">📂 View Job List</a>-->
+            <a href="/jobs/recommended" class="text-blue-600 text-sm hover:underline mt-3 inline-block">See all recommendations</a>
             <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
         <a href="/jobs/new" class="text-green-600 hover:underline">➕ Post New Job</a>
       </span>
