@@ -10,7 +10,8 @@ import se.iths.java24.spring25.service.JobOpportunityService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/jobOppertunities")
+//@RequestMapping("/api/jobOppertunities")
+@RequestMapping("/jobs/new")
 public class JobOpportunityController {
 
     private final JobOpportunityService jobOpportunityService;
