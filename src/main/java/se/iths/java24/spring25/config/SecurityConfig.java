@@ -30,6 +30,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
                 )
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard", true)
+                )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
