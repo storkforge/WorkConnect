@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Recommended Jobs</title>
+    <title th:text="#{jobs.title}">Recommended Jobs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
 <div th:replace="~{fragments/header :: header}">Header</div>
 
 <main class="container mx-auto px-4 py-8 flex-grow">
-    <h1 class="text-2xl font-bold mb-6 text-gray-800">Recommended Jobs</h1>
+    <h1 class="text-2xl font-bold mb-6 text-gray-800" th:text="#{jobs.recommended}">Recommended Jobs</h1>
 
     <div class="space-y-4">
         <div th:each="job : ${jobs}" class="bg-white p-4 rounded-lg shadow flex justify-between items-center">
@@ -18,12 +18,18 @@
                 <!-- Add more fields as needed -->
             </div>
             <form th:action="@{'/jobs/save/' + ${job.id}}" method="post">
-                <button class="text-red-500 hover:text-red-700 text-xl" title="Save Job">❤️</button>
+                <button class="text-red-500 hover:text-red-700 text-xl" th:title="#{jobs.save.button}" title="Save Job">❤️</button>
             </form>
+        </div>
+        <div th:if="${#lists.isEmpty(jobs)}" class="bg-white p-4 rounded-lg shadow text-center">
+            <p class="text-gray-600" th:text="#{jobs.no_jobs}">No jobs available at the moment.</p>
         </div>
     </div>
 </main>
 
-<div th:replace="~{fragments/footer :: footer}">Footer</div>
-</body>
+<div class="mt-4 text-center text-sm">
+    <a th:href="@{/jobs(lang=en)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.english}">🇬🇧 English</a>
+    <span class="text-gray-400">|</span>
+    <a th:href="@{/jobs(lang=sv)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.swedish}">🇸🇪 Svenska</a>
+</div></body>
 </html>
