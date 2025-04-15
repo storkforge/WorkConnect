@@ -1,5 +1,7 @@
 package se.iths.java24.spring25;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +16,8 @@ public class Spring25Application {
         openHomePage();
 
     }
+
+
     private static void openHomePage() {
         try {
             if (Desktop.isDesktopSupported()) {
@@ -24,5 +28,6 @@ public class Spring25Application {
         } catch (Exception e) {
             System.err.println("⚠️ Kunde inte öppna webbläsaren automatiskt: " + e.getMessage());
         }
+
     }
 }

@@ -43,35 +43,66 @@
                 </li>
             </ul>
         </div>
+
         <!-- AI Career Coach -->
-        <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-md font-semibold mb-3">🧠 AI Career Coach</h2>
+        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+            <h2 class="text-md font-semibold mb-3 text-gray-700">🧠 AI Career Coach</h2>
             <form id="coachForm" class="space-y-3">
-        <textarea id="coachInput" name="question" placeholder="Ask the AI Coach anything..."
-                  class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <textarea id="coachInput" name="question" placeholder="Ask the AI Coach anything..."
+                          class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
                 <button type="submit"
                         class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Ask Coach
                 </button>
             </form>
             <div id="coachResponse" class="mt-4 bg-gray-50 border border-gray-200 p-3 rounded text-sm text-gray-800 hidden"></div>
+            <button id="resetCoach"
+                    class="mt-2 w-full bg-gray-200 text-gray-700 py-1 px-4 rounded-md hover:bg-gray-300 hidden">
+                🔄 New Question
+            </button>
         </div>
 
         <script>
-            document.getElementById('coachForm').addEventListener('submit', async function (e) {
+            const coachForm = document.getElementById('coachForm');
+            const coachInput = document.getElementById('coachInput');
+            const responseBox = document.getElementById('coachResponse');
+            const resetButton = document.getElementById('resetCoach');
+
+            coachForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                const question = document.getElementById('coachInput').value;
+                const question = coachInput.value.trim();
 
-                const response = await fetch('/api/coach', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: question
-                });
+                if (!question) {
+                    responseBox.innerText = "⚠️ Please enter a question.";
+                    responseBox.classList.remove('hidden');
+                    resetButton.classList.remove('hidden');
+                    return;
+                }
 
-                const text = await response.text();
-                const responseBox = document.getElementById('coachResponse');
-                responseBox.innerText = text;
+                responseBox.innerText = "⏳ Thinking...";
                 responseBox.classList.remove('hidden');
+                resetButton.classList.add('hidden');
+
+                try {
+                    const response = await fetch('/api/ai/career-coach', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: question
+                    });
+
+                    const text = await response.text();
+                    responseBox.innerText = text;
+                } catch (error) {
+                    responseBox.innerText = "❌ Something went wrong. Please try again later.";
+                }
+
+                resetButton.classList.remove('hidden');
+            });
+
+            resetButton.addEventListener('click', function () {
+                coachInput.value = "";
+                responseBox.classList.add('hidden');
+                resetButton.classList.add('hidden');
             });
         </script>
     </aside>
