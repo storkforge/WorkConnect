@@ -3,6 +3,7 @@ package se.iths.java24.spring25;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 import java.awt.*;
 import java.net.URI;
 
@@ -10,6 +11,7 @@ import java.net.URI;
 public class Spring25Application {
     public static void main(String[] args) {
         SpringApplication.run(Spring25Application.class, args);
+        openHomePage();
 
     }
     private static void openHomePage() {

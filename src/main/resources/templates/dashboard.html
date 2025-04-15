@@ -5,7 +5,7 @@
     <title th:text="#{app.title}">WorkConnect Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 min-h-screen">
 
 <!-- HEADER -->
 <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
@@ -13,8 +13,8 @@
     <a th:href="@{/logout}" class="text-sm text-gray-600 hover:underline" th:text="#{app.logout}">Logout</a>
 </header>
 
-<!-- MAIN LAYOUT -->
-<div class="grid grid-cols-12 gap-4 max-w-7xl mx-auto mt-6">
+<!-- LAYOUT -->
+<div class="max-w-6xl mx-auto grid grid-cols-12 gap-6 py-8 px-4">
 
     <!-- SIDEBAR -->
     <aside class="col-span-3 space-y-6 px-4">
@@ -34,13 +34,16 @@
                        target="_blank"
                        class="text-blue-600 hover:underline" th:text="#{dashboard.cv_article}">
                         How to write a great CV
+                      
+
                     </a>
                 </li>
                 <li>
                     <a href="https://www.coursera.org/articles/common-it-interview-questions-and-how-to-answer-them"
+
                        target="_blank"
                        class="text-blue-600 hover:underline" th:text="#{dashboard.interview_article}">
-                        Preparing for Interviews
+                       🎯 Preparing for Interviews
                     </a>
                 </li>
             </ul>
@@ -53,7 +56,7 @@
 
         <div class="mt-4">
             <!-- Här är den fixade länken, använder th:href istället för href -->
-            <a th:href="@{/jobs}" class="text-blue-600 text-sm hover:underline mt-3 inline-block" th:text="#{dashboard.see_all}">See all recommendations</a>
+            <a th:href="@{/jobs}" class="text-blue-600 text-sm hover:underline mt-3 inline-block" th:text="#{dashboard.see_all}">📂 View Job List</a>
             <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                 <a th:href="@{/jobs/new}" class="text-green-600 hover:underline" th:text="#{dashboard.post_job}">➕ Post New Job</a>
             </span>
