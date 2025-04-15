@@ -23,4 +23,13 @@ public class JobWebController {
         model.addAttribute("jobs", jobs);
         return "jobs"; // jobs.html in templates folder
     }
+
+
+    @GetMapping("/jobs/jobregistration")
+    public String RegisterNewJob(Model model) {
+        List<JobOpportunityEntity> jobs = jobService.getAllJobOpportunities(); // Replace with filtered list if needed
+        model.addAttribute("jobs", jobs);
+        return "jobRegister"; // jobs.html in templates folder
+    }
+
 }
