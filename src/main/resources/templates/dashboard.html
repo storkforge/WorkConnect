@@ -5,7 +5,7 @@
     <title>WorkConnect Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 min-h-screen">
 
 <!-- HEADER -->
 <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
@@ -13,35 +13,32 @@
     <a th:href="@{/logout}" class="text-sm text-gray-600 hover:underline">Logout</a>
 </header>
 
-<!-- MAIN LAYOUT -->
-<div class="grid grid-cols-12 gap-4 max-w-7xl mx-auto mt-6">
+<!-- LAYOUT -->
+<div class="max-w-6xl mx-auto grid grid-cols-12 gap-6 py-8 px-4">
 
     <!-- SIDEBAR -->
-    <aside class="col-span-3 space-y-6 px-4">
-        <!-- Profile box -->
-        <div class="bg-white p-4 shadow rounded text-center">
-            <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>
-            <p class="font-semibold" th:text="${user?.name}">Your Name</p>
-            <p class="text-xs text-gray-500" th:text="${user?.email}">you@example.com</p>
-
+    <aside class="col-span-4 space-y-6">
+        <!-- Profile -->
+        <div class="bg-white p-6 rounded shadow text-center">
+            <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+            <p class="text-lg font-semibold" th:text="${user?.name}">Your Name</p>
+            <p class="text-sm text-gray-500" th:text="${user?.email}">you@example.com</p>
         </div>
 
         <!-- Articles -->
-        <div class="bg-white p-4 shadow rounded">
-            <h2 class="font-semibold mb-2">📚 Articles</h2>
-            <ul class="text-sm list-disc list-inside">
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-md font-semibold mb-3">📚 Useful Articles</h2>
+            <ul class="text-sm space-y-2">
                 <li>
                     <a href="https://www.indeed.com/career-advice/resumes-cover-letters/how-to-write-a-cv"
-                       target="_blank"
-                       class="text-blue-600 hover:underline">
-                        How to write a great CV
+                       target="_blank" class="text-blue-600 hover:underline">
+                        ✍️ How to write a great CV
                     </a>
                 </li>
                 <li>
                     <a href="https://www.coursera.org/articles/common-it-interview-questions-and-how-to-answer-them"
-                       target="_blank"
-                       class="text-blue-600 hover:underline">
-                        Preparing for Interviews
+                       target="_blank" class="text-blue-600 hover:underline">
+                        🎯 Preparing for Interviews
                     </a>
                 </li>
             </ul>
@@ -49,16 +46,14 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="col-span-9 bg-white p-6 rounded shadow">
-        <h2 class="text-xl font-bold mb-4">💼 Job Opportunities</h2>
+    <main class="col-span-8 bg-white p-6 rounded shadow">
+        <h2 class="text-xl font-bold mb-6 text-center">💼 Job Opportunities</h2>
 
-
-
-        <div class="mt-4">
-            <a href="/jobs" class="text-blue-600 hover:underline mr-4">📂 View Job List</a>
+        <div class="flex flex-col items-center space-y-3">
+            <a href="/jobs" class="text-blue-600 hover:underline text-lg">📂 View Job List</a>
             <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-        <a href="/jobs/new" class="text-green-600 hover:underline">➕ Post New Job</a>
-      </span>
+                <a href="/jobs/new" class="text-green-600 hover:underline text-lg">➕ Post New Job</a>
+            </span>
         </div>
     </main>
 
