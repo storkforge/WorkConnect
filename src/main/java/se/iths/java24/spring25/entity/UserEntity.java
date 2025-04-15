@@ -2,10 +2,6 @@ package se.iths.java24.spring25.entity;
 
 import jakarta.persistence.*;
 
-/**
- * Represents a user in the application.
- * Can be a user registered locally (with password) or via an OAuth2 provider (Google, Facebook).
- */
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -13,79 +9,63 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @Column(nullable = false, unique = true)
     private String email;
-    private String password;
 
-    // ---fields for OAuth2 integration ---
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AuthProvider provider;
 
     private String providerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     public UserEntity() {}
 
-    public UserEntity(String name, String email, String password) {
+    // Konstruktor utan ID och providerId
+    public UserEntity(String name, String email, String password, Role role) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.provider = AuthProvider.LOCAL;
+        this.role = role;
     }
 
-    // --- Getters and Setters ---
-    public Long getId() {
-        return id;
-    }
+    // --- Getters & Setters ---
+    public Long getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password; }
 
-    // Getters and Setters for the fields
-    public AuthProvider getProvider() {
-        return provider;
-    }
+    public AuthProvider getProvider() { return provider; }
 
-    public void setProvider(AuthProvider provider) {
-        this.provider = provider;
-    }
+    public void setProvider(AuthProvider provider) { this.provider = provider; }
 
-    public String getProviderId() {
-        return providerId;
-    }
+    public String getProviderId() { return providerId; }
 
-    public void setProviderId(String providerId) {
-        this.providerId = providerId;
-    }
+    public void setProviderId(String providerId) { this.providerId = providerId; }
 
-    // --- Optional: Consider adding toString(), equals(), and hashCode() methods ---
-    // These can be helpful for debugging and if you store entities in Sets or Maps.
+    public Role getRole() { return role; }
+
+    public void setRole(Role role) { this.role = role; }
 
     @Override
     public String toString() {
@@ -95,6 +75,7 @@ public class UserEntity {
                 ", email='" + email + '\'' +
                 ", provider=" + provider +
                 ", providerId='" + providerId + '\'' +
+                ", role=" + role +
                 '}';
     }
 }
