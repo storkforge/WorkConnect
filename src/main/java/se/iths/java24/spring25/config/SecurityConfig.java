@@ -11,8 +11,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/api/**")
+                )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/public/**", "/register", "/login", "/error", "/", "/css/**", "/js/**", "/images/**", "/download.png").permitAll() // <-- Lade till vanliga statiska resurser och din logo
+                        .requestMatchers("/api/**", "/public/**", "/register", "/login", "/error", "/", "/css/**", "/js/**", "/images/**", "/download.png").permitAll() // <-- Lade till vanliga statiska resurser och din logo
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
