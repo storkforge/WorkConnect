@@ -6,15 +6,19 @@ import se.iths.java24.spring25.entity.EventEntity;
 @Component
 class EventMapper {
 
-     EventDTO map(EventEntity eventEntity) {
-        EventDTO dto = new EventDTO();
-        // map all fields
-        return dto;
+    EventDTO map(EventEntity eventEntity) {
+        return new EventDTO(
+                eventEntity.getId(),
+                eventEntity.getName(),
+                eventEntity.getDate()
+        );
     }
 
-     EventEntity map(EventDTO dto) {
+    EventEntity map(EventDTO dto) {
         EventEntity eventEntity = new EventEntity();
-        // map all fields
+        // Don't map the id
+        eventEntity.setName(dto.name());
+        eventEntity.setDate(dto.date());
         return eventEntity;
     }
 }

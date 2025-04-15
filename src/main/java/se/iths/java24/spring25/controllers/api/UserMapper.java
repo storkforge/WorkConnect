@@ -6,15 +6,19 @@ import se.iths.java24.spring25.entity.UserEntity;
 @Component
 class UserMapper {
     UserDTO map(UserEntity userEntity) {
-        UserDTO dto = new UserDTO();
-        // map all fields
-        return dto;
+        return new UserDTO(
+                userEntity.getId(),
+                userEntity.getName(),
+                userEntity.getEmail(),
+                userEntity.getPassword()
+        );
     }
 
     UserEntity map(UserDTO dto) {
         UserEntity userEntity = new UserEntity();
-        // map all fields
+        userEntity.setName(dto.name());
+        userEntity.setEmail(dto.email());
+        userEntity.setPassword(dto.password());
         return userEntity;
     }
 }
-

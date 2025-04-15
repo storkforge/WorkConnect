@@ -1,6 +1,8 @@
 package se.iths.java24.spring25.controllers.api;
 
-public class EventDTO {
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-    // Implement event DTO fields and methods
+import java.time.LocalDate;
+
+record EventDTO (Long id, String name, @JsonFormat(pattern="yyyy-MM-dd") LocalDate date) {
 }
