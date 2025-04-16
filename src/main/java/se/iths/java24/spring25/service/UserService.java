@@ -2,6 +2,8 @@ package se.iths.java24.spring25.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import se.iths.java24.spring25.entity.AuthProvider;
+import se.iths.java24.spring25.entity.Role;
 import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.UserRepository;
 
@@ -57,7 +59,9 @@ public class UserService {
             throw new RuntimeException("Email already exists");
         }
         String hashedPassword = passwordEncoder.encode(password);
-        UserEntity user = new UserEntity(name, email, hashedPassword);
+        UserEntity user = new UserEntity(name, email, hashedPassword, Role.USER);
+        user.setProvider(AuthProvider.LOCAL);
+        user.setProviderId(null);
         userRepository.save(user);
     }
 }

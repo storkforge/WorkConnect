@@ -71,6 +71,9 @@
 </header>
 
 <main>
+    <div th:if="${error}" style="color: red; font-weight: bold; margin-bottom: 1rem;">
+        <p th:text="${error}"></p>
+    </div>
     <form th:action="@{/register}" method="post">
         <div>
             <label for="name"><strong>Name</strong></label><br>
@@ -90,6 +93,7 @@
         <button type="submit">Register</button>
     </form>
 </main>
+
 
 <footer>
     <p>&copy; 2025 WorkConnect</p>
