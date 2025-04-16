@@ -133,7 +133,7 @@ class InternshipControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(1, response.getBody().size());
-        assertEquals(dto, response.getBody().get(0));
+        assertEquals(dto, response.getBody().getFirst());
     }
 
     @Test

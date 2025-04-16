@@ -31,7 +31,7 @@ class UserControllerTest {
     @Test
     void testCreateUser() {
         // Arrange
-        UserDTO inputDto = new UserDTO(null, "Alice", "alice@example.com", "secret123");
+        UserDTO inputDto = new UserDTO(null, "Alice", "alice@example.com");
         UserEntity userEntity = new UserEntity();
         UserEntity savedEntity = new UserEntity();
         savedEntity.setId(1L);
@@ -39,7 +39,7 @@ class UserControllerTest {
         savedEntity.setEmail("alice@example.com");
         savedEntity.setPassword("secret123");
 
-        UserDTO savedDto = new UserDTO(1L, "Alice", "alice@example.com", "secret123");
+        UserDTO savedDto = new UserDTO(1L, "Alice", "alice@example.com");
 
         when(userMapper.map(inputDto)).thenReturn(userEntity);
         when(userService.createUser(userEntity)).thenReturn(savedEntity);
@@ -57,7 +57,7 @@ class UserControllerTest {
     void testUpdateUser() {
         // Arrange
         Long id = 1L;
-        UserDTO dto = new UserDTO(null, "Updated User", "updated@example.com", "newpass");
+        UserDTO dto = new UserDTO(null, "Updated User", "updated@example.com");
         UserEntity entity = new UserEntity();
 
         when(userMapper.map(dto)).thenReturn(entity);
@@ -80,7 +80,7 @@ class UserControllerTest {
         entity.setEmail("bob@example.com");
         entity.setPassword("bobpass");
 
-        UserDTO dto = new UserDTO(1L, "Bob", "bob@example.com", "bobpass");
+        UserDTO dto = new UserDTO(1L, "Bob", "bob@example.com");
 
         when(userService.getAllUsers()).thenReturn(List.of(entity));
         when(userMapper.map(entity)).thenReturn(dto);
@@ -92,7 +92,7 @@ class UserControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(1, response.getBody().size());
-        assertEquals(dto, response.getBody().get(0));
+        assertEquals(dto, response.getBody().getFirst());
     }
 
     @Test
@@ -105,7 +105,7 @@ class UserControllerTest {
         entity.setEmail("charlie@example.com");
         entity.setPassword("charliepass");
 
-        UserDTO dto = new UserDTO(id, "Charlie", "charlie@example.com", "charliepass");
+        UserDTO dto = new UserDTO(id, "Charlie", "charlie@example.com");
 
         when(userService.getUserById(id)).thenReturn(Optional.of(entity));
         when(userMapper.map(entity)).thenReturn(dto);
