@@ -16,7 +16,6 @@ class UserMapperTest {
         entity.setId(1L);
         entity.setName("Jane Doe");
         entity.setEmail("jane@example.com");
-        entity.setPassword("secure123");
 
         // Act
         UserDTO dto = userMapper.map(entity);
@@ -25,13 +24,12 @@ class UserMapperTest {
         assertEquals(1L, dto.id());
         assertEquals("Jane Doe", dto.name());
         assertEquals("jane@example.com", dto.email());
-        assertEquals("secure123", dto.password());
     }
 
     @Test
     void testMapToEntity() {
         // Arrange
-        UserDTO dto = new UserDTO(null, "John Doe", "john@example.com", "pass123");
+        UserDTO dto = new UserDTO(null, "John Doe", "john@example.com");
 
         // Act
         UserEntity entity = userMapper.map(dto);
@@ -40,6 +38,5 @@ class UserMapperTest {
         assertNull(entity.getId()); // ID is not mapped
         assertEquals("John Doe", entity.getName());
         assertEquals("john@example.com", entity.getEmail());
-        assertEquals("pass123", entity.getPassword());
     }
 }
