@@ -13,28 +13,10 @@
     <a th:href="@{/logout}" class="text-sm text-gray-600 hover:underline" th:text="#{app.logout}">Logout</a>
 </header>
 
-<!-- MAIN CONTAINER -->
-<div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 px-4">
+<!-- LAYOUT -->
+<div class="max-w-6xl mx-auto grid grid-cols-12 gap-6 py-8 px-4">
 
     <!-- SIDEBAR -->
-<!--    <aside class="col-span-3 space-y-6 px-4">-->
-<!--        &lt;!&ndash; Profile box &ndash;&gt;-->
-<!--        <div class="bg-white p-4 shadow rounded text-center">-->
-<!--            <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>-->
-<!--            <p class="font-semibold" th:text="${user?.name}">Your Name</p>-->
-<!--            <p class="text-xs text-gray-500" th:text="${user?.email}">you@example.com</p>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Articles &ndash;&gt;-->
-<!--        <div class="bg-white p-4 shadow rounded">-->
-<!--            <h2 class="font-semibold mb-2" th:text="#{dashboard.articles}">📚 Articles</h2>-->
-<!--            <ul class="text-sm list-disc list-inside">-->
-<!--                <li>-->
-<!--                    <a href="https://www.indeed.com/career-advice/resumes-cover-letters/how-to-write-a-cv"-->
-<!--                       target="_blank"-->
-<!--                       class="text-blue-600 hover:underline" th:text="#{dashboard.cv_article}">-->
-<!--                        How to write a great CV-->
-
     <aside class="lg:col-span-4 space-y-6">
         <!-- Profile Card -->
         <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
@@ -52,7 +34,6 @@
                        target="_blank"
                        class="text-blue-600 hover:underline flex items-center gap-2" th:text="#{dashboard.cv_article}">
                         ✍️ How to write a great CV
-
                     </a>
                 </li>
                 <li>
@@ -65,14 +46,73 @@
             </ul>
         </div>
 
+        <!-- AI Career Coach -->
+        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+            <h2 class="text-md font-semibold mb-3 text-gray-700">🧠 AI Career Coach</h2>
+            <form id="coachForm" class="space-y-3">
+                <textarea id="coachInput" name="question" placeholder="Ask the AI Coach anything..."
+                          class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Ask Coach
+                </button>
+            </form>
+            <div id="coachResponse" class="mt-4 bg-gray-50 border border-gray-200 p-3 rounded text-sm text-gray-800 hidden"></div>
+            <button id="resetCoach"
+                    class="mt-2 w-full bg-gray-200 text-gray-700 py-1 px-4 rounded-md hover:bg-gray-300 hidden">
+                🔄 New Question
+            </button>
+        </div>
+
+        <script>
+            const coachForm = document.getElementById('coachForm');
+            const coachInput = document.getElementById('coachInput');
+            const responseBox = document.getElementById('coachResponse');
+            const resetButton = document.getElementById('resetCoach');
+
+            coachForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const question = coachInput.value.trim();
+
+                if (!question) {
+                    responseBox.innerText = "⚠️ Please enter a question.";
+                    responseBox.classList.remove('hidden');
+                    resetButton.classList.remove('hidden');
+                    return;
+                }
+
+                responseBox.innerText = "⏳ Thinking...";
+                responseBox.classList.remove('hidden');
+                resetButton.classList.add('hidden');
+
+                try {
+                    const response = await fetch('/api/ai/career-coach', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: question
+                    });
+
+                    const text = await response.text();
+                    responseBox.innerText = text;
+                } catch (error) {
+                    responseBox.innerText = "❌ Something went wrong. Please try again later.";
+                }
+
+                resetButton.classList.remove('hidden');
+            });
+
+            resetButton.addEventListener('click', function () {
+                coachInput.value = "";
+                responseBox.classList.add('hidden');
+                resetButton.classList.add('hidden');
+            });
+        </script>
     </aside>
 
     <!-- MAIN CONTENT -->
-<!--    <main class="col-span-9 bg-white p-6 rounded shadow">-->
     <main class="lg:col-span-8 bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
         <h2 class="text-2xl font-bold mb-8 text-center text-gray-800" th:text="#{dashboard.job_opportunities}">💼 Job Opportunities</h2>
 
-<!--        <div class="mt-4">-->
         <div class="flex flex-col items-center space-y-5">
 
             <!-- Här är den fixade länken, använder th:href istället för href -->
@@ -84,13 +124,11 @@
             </span>
         </div>
     </main>
-
 </div>
 <div class="mt-4 text-center text-sm">
     <a th:href="@{/dashboard(lang=en)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.english}">🇬🇧 English</a>
     <span class="text-gray-400">|</span>
     <a th:href="@{/dashboard(lang=sv)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.swedish}">🇸🇪 Svenska</a>
 </div>
-
 </body>
 </html>
