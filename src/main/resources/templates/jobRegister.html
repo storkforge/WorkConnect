@@ -83,23 +83,63 @@
     <div th:if="${error}" style="color: red; font-weight: bold; margin-bottom: 1rem;">
         <p th:text="${error}"></p>
     </div>
-    <form th:action="@{/job/jobregistration}" method="post">
-        <div>
-            <label for="description"><strong th:text="#{jobs.position}">Position name:</strong></label><br>
-            <input type="text" id="description" name="description" required>
-        </div>
 
-        <div>
-            <label for="location"><strong th:text="#{jobs.location}">Location:</strong></label><br>
-            <input type="text" id="location" name="location" required>
-        </div>
+<!--    <form th:action="@{/jobs/registration}" th:object="${jobOpportunity}" method="post">-->
+<!--        <input type="text" th:field="*{companyName}" placeholder="Company Name" />-->
+<!--        <input type="text" th:field="*{jobTitle}" placeholder="Job Title" />-->
+<!--        <input type="text" th:field="*{jobDescription}" placeholder="Job Description" />-->
+<!--        <input type="text" th:field="*{location}" placeholder="Location" />-->
+<!--        <input type="text" th:field="*{termsOfEmployment}" placeholder="Terms of Employment" />-->
+<!--&lt;!&ndash;        <textarea th:field="*{description}" placeholder="Additional Description"></textarea>&ndash;&gt;-->
+<!--        &lt;!&ndash; You could add dropdown/select for event if needed &ndash;&gt;-->
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
 
-        <div>
-            <label for="termsOfEmployment"><strong th:text="#{jobs.terms}">Terms of employment:</strong></label><br>
-            <input type="text" id="termsOfEmployment" name="termsOfEmployment" required>
-        </div>
+    <form th:action="@{/jobs/jobregistration}" th:object="${jobOpportunity}" method="post">
+<!--        <div>-->
+<!--            <label for="companyName"><strong>Company name:</strong></label><br>-->
+<!--            <input type="text" id="companyName" name="companyName" required>-->
+<!--        </div>-->
 
-        <button type="submit" th:text="#{jobs.register.button}">Register</button>
+<!--        <div>-->
+<!--            <label for="jobTitle"><strong>Job Title:</strong></label><br>-->
+<!--            <input type="text" id="jobTitle" name="jobTitle" required>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label for="jobDescription"><strong>Job description:</strong></label><br>-->
+<!--            <input type="text" id="jobDescription" name="jobDescription" required>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label for="location"><strong>Location:</strong></label><br>-->
+<!--            <input type="text" id="location" name="location" required>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label for="termsOfEmployment"><strong>Terms of employment:</strong></label><br>-->
+<!--            <input type="text" id="termsOfEmployment" name="termsOfEmployment" required>-->
+<!--        </div>-->
+
+        <label>Company Name:</label><br>
+        <input type="text" th:field="*{companyName}" /><br><br>
+
+        <label>Job Title:</label><br>
+        <input type="text" th:field="*{jobTitle}" /><br><br>
+
+        <label>Job Description:</label><br>
+        <input type="text" th:field="*{jobDescription}" /><br><br>
+
+        <label>Location:</label><br>
+        <input type="text" th:field="*{location}" /><br><br>
+
+        <label>Terms of Employment:</label><br>
+        <input type="text" th:field="*{termsOfEmployment}" /><br><br>
+
+        <label>Additional Description:</label><br>
+        <textarea th:field="*{description}"></textarea><br><br>
+
+        <button type="submit">Register</button>
     </form>
 </main>
 

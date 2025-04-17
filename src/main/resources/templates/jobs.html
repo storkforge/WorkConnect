@@ -61,18 +61,45 @@
                             <h3 class="text-lg font-medium text-gray-900">Backend Developer @ CodeBase</h3>
                             <p class="text-sm text-gray-600">Barcelona, Full-time</p>
                         </div>
-                        <button class="text-red-500 hover:text-red-700" title="Save Job"> ❤️ </button>
-                    </div>
-                    <!-- Repeat similar blocks for each job in your list -->
-                    <div class="bg-gray-50 p-4 rounded border border-gray-200 flex justify-between items-center">
-                        <div>
-                            <h3 class="text-lg font-medium text-gray-900">UI/UX Designer Internship @ PixelPro</h3>
-                            <p class="text-sm text-gray-600">Remote, Internship</p>
+
+                        <!-- Repeat similar blocks for each job in your list -->
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">UI/UX Designer Internship @ PixelPro</h3>
+                                <p class="text-sm text-gray-600">Remote, Internship</p>
+                            </div>
+                            <button class="text-red-500 hover:text-red-700" title="Save Job">
+                                ❤️
+                            </button>
                         </div>
-                        <button class="text-red-500 hover:text-red-700" title="Save Job"> ❤️ </button>
                     </div>
-                </div>
-            </section>
+
+
+<!--                    MAYBE WE CAN ADD IT LATER-->
+<!--                    <div class="mt-4">-->
+<!--                        <a href="/jobs/recommended" class="text-blue-600 text-sm hover:underline">See recommended jobs</a>-->
+<!--                    </div>-->
+                </section>
+
+
+
+<!--BACK UP FOR STELLE-->
+<!--                <div th:each="job : ${jobs}" class="bg-white p-4 rounded-lg shadow flex justify-between items-center">-->
+<!--                    <div>-->
+<!--                        <p class="text-lg font-semibold text-gray-800" th:text="${job.description}">Job Description</p>-->
+<!--                        &lt;!&ndash; Add more fields as needed &ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <form th:action="@{'/jobs/save/' + ${job.id}}" method="post">-->
+<!--                        <button class="text-red-500 hover:text-red-700 text-xl" title="Save Job">❤️</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        <div class="mt-4">-->
+<!--            <a href="/jobs" class="text-blue-600 hover:underline mr-4">📂 HERE IS THE LIST</a>-->
+<!--            <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">-->
+<!--        <a href="/jobs/new" class="text-green-600 hover:underline">➕ Post New Job</a>-->
+<!--      </span>-->
         </div>
     </main>
 </div>
