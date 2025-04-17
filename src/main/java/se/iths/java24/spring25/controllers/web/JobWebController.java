@@ -30,20 +30,6 @@ public class JobWebController {
         return "jobs"; // This will map to a Thymeleaf template named jobs.html
     }
 
-    @PostMapping("/jobs/save/{id}")
-    public String saveJob(@PathVariable Long id) {
-        // Simulate saving logic
-        System.out.println("Saved job with ID: " + id);
-        return "redirect:/jobs";
-    }
-
-    @PostMapping("/jobs/apply/{id}")
-    public String applyToJob(@PathVariable Long id) {
-        // Simulate application logic
-        System.out.println("Applied to job with ID: " + id);
-        return "redirect:/jobs";
-    }
-
     @GetMapping("/jobs/jobregistration")
     public String showJobRegistrationForm(Model model) {
         model.addAttribute("jobOpportunity", new JobOpportunityEntity());

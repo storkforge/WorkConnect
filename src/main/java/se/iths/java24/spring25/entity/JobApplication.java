@@ -18,4 +18,10 @@ public class JobApplication {
 
     private String status = "APPLIED";
     private LocalDateTime appliedAt = LocalDateTime.now();
+
+    public void setUser(UserEntity user) {
+    }
+
+    public void setJob(JobOpportunityEntity job) {
+    }
 }
