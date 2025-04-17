@@ -13,7 +13,7 @@
     <a th:href="@{/logout}" class="text-sm text-gray-600 hover:underline" th:text="#{app.logout}">Logout</a>
 </header>
 
-<!-- LAYOUT -->
+<!-- MAIN LAYOUT -->
 <div class="max-w-6xl mx-auto grid grid-cols-12 gap-6 py-8 px-4">
 
     <!-- SIDEBAR -->
@@ -34,13 +34,10 @@
                        target="_blank"
                        class="text-blue-600 hover:underline" th:text="#{dashboard.cv_article}">
                         How to write a great CV
-                      
-
                     </a>
                 </li>
                 <li>
                     <a href="https://www.coursera.org/articles/common-it-interview-questions-and-how-to-answer-them"
-
                        target="_blank"
                        class="text-blue-600 hover:underline" th:text="#{dashboard.interview_article}">
                        🎯 Preparing for Interviews
@@ -53,7 +50,6 @@
     <!-- MAIN CONTENT -->
     <main class="col-span-9 bg-white p-6 rounded shadow">
         <h2 class="text-xl font-bold mb-4" th:text="#{dashboard.job_opportunities}">💼 Job Opportunities</h2>
-
         <div class="mt-4">
             <!-- Här är den fixade länken, använder th:href istället för href -->
             <a th:href="@{/jobs}" class="text-blue-600 text-sm hover:underline mt-3 inline-block" th:text="#{dashboard.see_all}">📂 View Job List</a>

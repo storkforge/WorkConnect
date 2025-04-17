@@ -19,27 +19,40 @@ import java.util.List;
 public class JobWebController {
 
     private final JobOpportunityService jobService;
-
-    @Autowired
-    public JobWebController(JobOpportunityService jobService) {
-        this.jobService = jobService;
-    }
-
-    @GetMapping("/jobs")
-    public String showRecommendedJobs(Model model) {
-        List<JobOpportunityEntity> jobs = jobService.getAllJobOpportunities(); // Replace with filtered list if needed
-        model.addAttribute("jobs", jobs);
-        return "jobs"; // jobs.html in templates folder
-    }
-
-    @Autowired
     private JobOpportunityRepository jobOpportunityRepository;
-
 
     public JobWebController(JobOpportunityService jobService, JobOpportunityRepository jobOpportunityRepository) {
         this.jobService = jobService;
         this.jobOpportunityRepository = jobOpportunityRepository;
     }
+
+//    @Autowired
+//    public JobWebController(JobOpportunityService jobService) {
+//        this.jobService = jobService;
+//    }
+
+//    @GetMapping("/jobs")
+//    public String showRecommendedJobs(Model model) {
+//        List<JobOpportunityEntity> jobs = jobService.getAllJobOpportunities(); // Replace with filtered list if needed
+//        model.addAttribute("jobs", jobs);
+//        return "jobs"; // jobs.html in templates folder
+//    }
+
+    @GetMapping("/jobs")
+    public String showJobs(Model model) {
+        List<JobOpportunityEntity> jobs = jobOpportunityRepository.findAll();
+        model.addAttribute("jobs", jobs);
+        return "jobs"; // This will map to a Thymeleaf template named jobs.html
+    }
+
+//    @Autowired
+//    private JobOpportunityRepository jobOpportunityRepository;
+
+
+//    public JobWebController(JobOpportunityService jobService, JobOpportunityRepository jobOpportunityRepository) {
+//        this.jobService = jobService;
+//        this.jobOpportunityRepository = jobOpportunityRepository;
+//    }
 
 
 //    @GetMapping("/jobs/jobregistration")
