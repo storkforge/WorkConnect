@@ -9,7 +9,6 @@ import se.iths.java24.spring25.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
-// glöm inte att ha med detta ↑ om du inte redan importerat
 
 @Service
 public class UserService {
@@ -43,7 +42,7 @@ public class UserService {
     }
 
 
-    public void registerUser(String name, String email, String password) {
+     public void registerUser(String name, String email, String password) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be empty");
         }

@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobOppertunities")
+
 class JobOpportunityController {
 
     private final JobOpportunityService jobOpportunityService;
