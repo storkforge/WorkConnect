@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.iths.java24.spring25.repository.JobOpportunityRepository;
 import se.iths.java24.spring25.service.JobOpportunityService;
@@ -29,17 +30,25 @@ public class JobWebController {
         return "jobs"; // This will map to a Thymeleaf template named jobs.html
     }
 
+    @PostMapping("/jobs/save/{id}")
+    public String saveJob(@PathVariable Long id) {
+        // Simulate saving logic
+        System.out.println("Saved job with ID: " + id);
+        return "redirect:/jobs";
+    }
+
+    @PostMapping("/jobs/apply/{id}")
+    public String applyToJob(@PathVariable Long id) {
+        // Simulate application logic
+        System.out.println("Applied to job with ID: " + id);
+        return "redirect:/jobs";
+    }
+
     @GetMapping("/jobs/jobregistration")
     public String showJobRegistrationForm(Model model) {
         model.addAttribute("jobOpportunity", new JobOpportunityEntity());
         return "jobRegister"; // jobs/jobregistration.html in templates folder
     }
-
-//    @PostMapping("/jobs/jobregistration")
-//    public String submitForm(@ModelAttribute JobOpportunityEntity jobOpportunity) {
-//        jobOpportunityRepository.save(jobOpportunity);
-//        return "redirect:/jobs/jobSuccess"; // see vist VALE!!!
-//    }
 
     @PostMapping("/jobs/jobregistration")
     public String submitForm(@ModelAttribute JobOpportunityEntity jobOpportunity, Model model) {
