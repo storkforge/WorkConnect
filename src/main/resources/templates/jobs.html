@@ -28,24 +28,13 @@
             <p class="text-sm text-gray-500" th:text="${user?.email}">you@example.com</p>
         </div>
 
-<!--        <div class="bg-white p-4 shadow rounded text-center">-->
-<!--            <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>-->
 
-<!--            &lt;!&ndash; Using the model attribute 'user' directly &ndash;&gt;-->
-<!--            <div th:if="${user != null}">-->
-<!--                Hello, <span th:text="${user?.name}">User</span>! (<span th:text="${user?.email}">email</span>)-->
-<!--            </div>-->
-<!--            <div th:if="${user == null}">-->
-<!--                Hello, Guest! <a th:href="@{/login}">Log in</a>-->
-<!--            </div>-->
-
-<!--&lt;!&ndash;            <p class="font-semibold" th:text="${user?.name}">Your Name</p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <p class="text-xs text-gray-500" th:text="${user?.email}">you@example.com</p>&ndash;&gt;-->
-<!--        </div>-->
+        <p><a href="/jobs/saved">⭐ View Saved Jobs</a></p>
+        <p><a href="/jobs/applied">🚀 View Applied Jobs</a></p>
 
         <!-- Articles -->
         <div class="bg-white p-4 shadow rounded">
-            <h2 class="font-semibold mb-2" th:text="#{dashboard.articles}">📚 Job search websites:</h2>
+            <h2 class="font-semibold mb-2" >📚 Job search websites:</h2>
             <ul class="text-sm list-disc list-inside">
                 <li>
                     <a href="https://www.linkedin.com/jobs/jobs-in-gothenburg-sweden"
@@ -87,6 +76,19 @@
                             <p><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
                             <p><strong>Description:</strong> <span th:text="${job.jobDescription}">Description</span></p>
                             <p><strong>Terms:</strong> <span th:text="${job.termsOfEmployment}">Terms</span></p>
+
+                            <!-- Save Button -->
+                            <form th:action="@{'/jobs/save/' + ${job.id}}" method="post" style="display:inline;">
+                                <button type="submit">❤️ Save</button>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            </form>
+
+                            <!-- Apply Button -->
+                            <form th:action="@{'/jobs/apply/' + ${job.id}}" method="post" style="display:inline;">
+                                <button type="submit">🚀 Apply</button>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            </form>
+
                             <hr>
                         </li>
                     </ul>

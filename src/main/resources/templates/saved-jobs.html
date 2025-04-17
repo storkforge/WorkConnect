@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Saved Jobs</title>
+</head>
+<body>
+<h1>Saved Jobs</h1>
+
+<ul>
+  <li th:each="job : ${savedJobs}">
+    <h2 th:text="${job.jobTitle}">Job Title</h2>
+    <p><strong>Company:</strong> <span th:text="${job.companyName}">Company</span></p>
+    <p><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
+    <p><strong>Description:</strong> <span th:text="${job.jobDescription}">Description</span></p>
+    <hr>
+  </li>
+</ul>
+
+<a href="/jobs">← Back to All Jobs</a>
+</body>
+</html>
