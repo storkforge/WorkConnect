@@ -1,6 +1,7 @@
 package se.iths.java24.spring25.controllers.api;
 
-public class InternshipDTO {
+import java.time.LocalDate;
 
-    // Implement internship DTO fields and methods
+record InternshipDTO (Long id, String title, String company, String location, String description,
+                             LocalDate startDate, LocalDate endDate) {
 }
