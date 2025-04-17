@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register a new job</title>
+    <title th:text="#{jobs.register.title}">Register a new job</title>
     <link rel="stylesheet" href="/css/style.css">
     <style>
         body {
@@ -62,12 +62,21 @@
             margin: 0 0.5rem;
             text-decoration: underline;
         }
+        /* New style for language links */
+        .language-link {
+            color: white !important;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .language-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Register a new job</h1>
+    <h1 th:text="#{jobs.register.header}">Register a new job</h1>
 </header>
 
 <main>
@@ -76,30 +85,31 @@
     </div>
     <form th:action="@{/job/jobregistration}" method="post">
         <div>
-            <label for="description"><strong>Position name:</strong></label><br>
+            <label for="description"><strong th:text="#{jobs.position}">Position name:</strong></label><br>
             <input type="text" id="description" name="description" required>
         </div>
 
         <div>
-            <label for="location"><strong>Location:</strong></label><br>
+            <label for="location"><strong th:text="#{jobs.location}">Location:</strong></label><br>
             <input type="text" id="location" name="location" required>
         </div>
 
         <div>
-            <label for="termsOfEmployment"><strong>Terms of employment:</strong></label><br>
+            <label for="termsOfEmployment"><strong th:text="#{jobs.terms}">Terms of employment:</strong></label><br>
             <input type="text" id="termsOfEmployment" name="termsOfEmployment" required>
         </div>
 
-        <button type="submit">Register</button>
+        <button type="submit" th:text="#{jobs.register.button}">Register</button>
     </form>
 </main>
 
 <!--FOOTER-->
-<footer>
-    <p>&copy; 2025 WorkConnect</p>
-    <div class="lang-switch">
-        <a th:href="@{/change-language(lang='en')}">🇬🇧 English</a> |
-        <a th:href="@{/change-language(lang='sv')}">🇸🇪 Svenska</a>
+<footer class="bg-white py-8 shadow-inner" style="background-color: #2c3e50; color: white;">
+    <div class="mt-4 text-center text-sm">
+        <!-- Language switching links with white text -->
+        <a th:href="@{/jobs/jobregistration(lang=en)}" class="language-link" th:text="#{language.english}">🇬🇧 English</a>
+        <span style="color: white;">|</span>
+        <a th:href="@{/jobs/jobregistration(lang=sv)}" class="language-link" th:text="#{language.swedish}">🇸🇪 Svenska</a>
     </div>
 </footer>
 
