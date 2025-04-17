@@ -6,15 +6,16 @@ import se.iths.java24.spring25.entity.JobOpportunityEntity;
 @Component
 class JobOpportunityMapper {
     JobOpportunityDTO map(JobOpportunityEntity jobOpportunityEntity) {
-        JobOpportunityDTO dto = new JobOpportunityDTO();
-        // map all fields
-        return dto;
+        return new JobOpportunityDTO(
+                jobOpportunityEntity.getId(),
+                jobOpportunityEntity.getDescription()
+        );
     }
 
     JobOpportunityEntity map(JobOpportunityDTO dto) {
         JobOpportunityEntity jobOpportunityEntity = new JobOpportunityEntity();
-        // map all fields
+        // do not map id
+        jobOpportunityEntity.setDescription(dto.description());
         return jobOpportunityEntity;
     }
 }
-
