@@ -2,8 +2,6 @@ package se.iths.java24.spring25.entity;
 
 import jakarta.persistence.*;
 
-
-
 @Entity
 @Table(name = "job_opportunity_entity")
 public class JobOpportunityEntity {
@@ -42,7 +40,6 @@ public class JobOpportunityEntity {
         this.location = location;
         this.termsOfEmployment = termsOfEmployment;
     }
-
 
 
     // Getters and setters
