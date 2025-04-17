@@ -28,11 +28,13 @@
             <p class="text-sm text-gray-500" th:text="${user?.email}">you@example.com</p>
         </div>
 
-        <a href="/jobs/saved">⭐ View Saved Jobs</a>
+
+        <p><a href="/jobs/saved">⭐ View Saved Jobs</a></p>
+        <p><a href="/jobs/applied">🚀 View Applied Jobs</a></p>
 
         <!-- Articles -->
         <div class="bg-white p-4 shadow rounded">
-            <h2 class="font-semibold mb-2" th:text="#{dashboard.articles}">📚 Job search websites:</h2>
+            <h2 class="font-semibold mb-2" >📚 Job search websites:</h2>
             <ul class="text-sm list-disc list-inside">
                 <li>
                     <a href="https://www.linkedin.com/jobs/jobs-in-gothenburg-sweden"

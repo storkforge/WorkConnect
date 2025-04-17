@@ -84,4 +84,21 @@ public class JobOpportunityWebController {
         model.addAttribute("savedJobs", jobs);
         return "saved-jobs";
     }
+
+    @GetMapping("/jobs/applied")
+    public String showAppliedJobs(Model model) {
+        UserEntity user = getCurrentUser(); // simulate or get from logged-in session
+
+        List<JobApplication> appliedJobs = (List<JobApplication>) (List<?>) jobAppRepo.findByUser(user);
+
+
+        // Extract just the job opportunity from each saved job
+        List<JobOpportunityEntity> jobs = appliedJobs.stream()
+                .map(JobApplication::getJob)
+                .toList();
+
+        model.addAttribute("appliedJobs", jobs);
+        return "applied-jobs";
+    }
+
 }

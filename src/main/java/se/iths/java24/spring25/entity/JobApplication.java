@@ -19,9 +19,31 @@ public class JobApplication {
     private String status = "APPLIED";
     private LocalDateTime appliedAt = LocalDateTime.now();
 
+    public Long getId() {
+        return id;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
     public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public JobOpportunityEntity getJob() {
+        return job;
     }
 
     public void setJob(JobOpportunityEntity job) {
+        this.job = job;
+    }
+
+    public LocalDateTime getSavedAt() {
+        return appliedAt;
+    }
+
+    public void setSavedAt(LocalDateTime savedAt) {
+        this.appliedAt = savedAt;
     }
 }
