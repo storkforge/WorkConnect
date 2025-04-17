@@ -1,48 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Job Opportunities</title>
+    <meta charset="UTF-8">
+    <title th:text="#{jobs.title}">Available Jobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Job Opportunities</h1>
-<ul>
-    <li th:each="job : ${jobs}">
-        <h2 th:text="${job.jobTitle}">Job Title</h2>
-        <p><strong>Company:</strong> <span th:text="${job.companyName}">Company Name</span></p>
-        <p><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
-        <p><strong>Description:</strong> <span th:text="${job.jobDescription}">Description</span></p>
-        <p><strong>Terms:</strong> <span th:text="${job.termsOfEmployment}">Terms</span></p>
-        <hr>
-    </li>
-</ul>
-</body>
-</html>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
 
+<!-- HEADER -->
+<header class="bg-white shadow px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-600" th:text="#{app.title}">WorkConnect</h1>
+    <a th:href="@{/dashboard}" class="text-sm text-gray-600 hover:underline" th:text="#{jobs.dashboard}"></a>
+    <a th:href="@{/logout}" class="text-sm text-gray-600 hover:underline" th:text="#{app.logout}"></a>
+</header>
 
+<!-- MAIN LAYOUT -->
+<div class="max-w-6xl mx-auto grid grid-cols-12 gap-6 py-8 px-4">
 
+    <!-- SIDEBAR -->
+    <aside class="col-span-3 space-y-6 px-4">
+        <!-- Profile box -->
 
+        <!-- Profile Card -->
+        <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center text-gray-500 text-3xl">👤</div>
+            <p class="font-semibold" th:text="${user?.name}">Your Name</p>
+            <p class="text-sm text-gray-500" th:text="${user?.email}">you@example.com</p>
+        </div>
 
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title th:text="#{jobs.title}">Available Jobs</title>-->
-<!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
-<!--</head>-->
-<!--<body class="bg-gray-100 text-gray-800 min-h-screen">-->
-
-<!--&lt;!&ndash; HEADER &ndash;&gt;-->
-<!--<header class="bg-white shadow px-6 py-4 flex justify-between items-center">-->
-<!--    <h1 class="text-2xl font-bold text-blue-600" th:text="#{app.title}">WorkConnect</h1>-->
-<!--    <a th:href="@{/logout}" class="text-sm text-gray-600 hover:underline" th:text="#{app.logout}">Logout</a>-->
-<!--</header>-->
-
-<!--&lt;!&ndash; MAIN LAYOUT &ndash;&gt;-->
-<!--<div class="max-w-6xl mx-auto grid grid-cols-12 gap-6 py-8 px-4">-->
-
-<!--    &lt;!&ndash; SIDEBAR &ndash;&gt;-->
-<!--    <aside class="col-span-3 space-y-6 px-4">-->
-<!--        &lt;!&ndash; Profile box &ndash;&gt;-->
 <!--        <div class="bg-white p-4 shadow rounded text-center">-->
 <!--            <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-2"></div>-->
 
@@ -58,103 +43,66 @@
 <!--&lt;!&ndash;            <p class="text-xs text-gray-500" th:text="${user?.email}">you@example.com</p>&ndash;&gt;-->
 <!--        </div>-->
 
-<!--        &lt;!&ndash; Articles &ndash;&gt;-->
-<!--        <div class="bg-white p-4 shadow rounded">-->
-<!--            <h2 class="font-semibold mb-2" th:text="#{dashboard.articles}">📚 Job search websites:</h2>-->
-<!--            <ul class="text-sm list-disc list-inside">-->
-<!--                <li>-->
-<!--                    <a href="https://www.linkedin.com/jobs/jobs-in-gothenburg-sweden"-->
-<!--                       target="_blank"-->
-<!--                       class="text-blue-600 hover:underline">-->
-<!--                        LinkedIn-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a href="https://jobbland.se/lediga-jobb"-->
-<!--                       target="_blank"-->
-<!--                       class="text-blue-600 hover:underline">-->
-<!--                        Jobbland-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </aside>-->
+        <!-- Articles -->
+        <div class="bg-white p-4 shadow rounded">
+            <h2 class="font-semibold mb-2" th:text="#{dashboard.articles}">📚 Job search websites:</h2>
+            <ul class="text-sm list-disc list-inside">
+                <li>
+                    <a href="https://www.linkedin.com/jobs/jobs-in-gothenburg-sweden"
+                       target="_blank"
+                       class="text-blue-600 hover:underline">
+                        LinkedIn
+                    </a>
+                </li>
+                <li>
+                    <a href="https://jobbland.se/lediga-jobb"
+                       target="_blank"
+                       class="text-blue-600 hover:underline">
+                        Jobbland
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
 
-<!--    &lt;!&ndash; MAIN CONTENT &ndash;&gt;-->
-<!--    <main class="col-span-9 bg-white p-6 rounded shadow">-->
-<!--        <h2 class="text-xl font-bold mb-4" th:text="#{dashboard.job_opportunities}">💼 Available Jobs</h2>-->
-<!--        <div class="space-y-4">-->
-<!--            &lt;!&ndash; Jobs Section &ndash;&gt;-->
-<!--            <section class="bg-white p-6 rounded-lg shadow">-->
-<!--                <div class="flex justify-between items-center mb-4">-->
-<!--                    <h2 class="text-xl font-semibold text-gray-800" th:text="#{jobs.available}">Available Jobs</h2>-->
-<!--                    <a href="/jobs/jobregistration" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm" th:text="'+ ' + #{jobs.register}">+ Register New Job</a>-->
-<!--                </div>-->
-<!--                <div class="space-y-4">-->
-<!--                    &lt;!&ndash; EXAMPLE Job Card (loop this with Thymeleaf) &ndash;&gt;-->
+    <!-- MAIN CONTENT -->
+    <main class="col-span-9 bg-white p-6 rounded shadow">
+        <div class="space-y-4">
+            <!-- Jobs Section -->
+            <section class="bg-white p-6 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800" th:text="#{jobs.available}">Available Jobs</h2>
+                    <a href="/jobs/jobregistration" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm" th:text="'+ ' + #{jobs.register}">+ Register New Job</a>
+                </div>
+                <div class="space-y-4">
+                </div>
 
-<!--&lt;!&ndash;                    <div th:each="job : ${jobs}"&ndash;&gt;-->
-<!--&lt;!&ndash;                         class="bg-gray-50 p-4 rounded border border-gray-200 flex justify-between items-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <h3 class="text-lg font-medium text-gray-900"&ndash;&gt;-->
-<!--&lt;!&ndash;                                th:text="${job.job_title}">Job Title</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <p class="text-sm text-gray-600" th:text="'Location: ' + ${job.location} + ', Terms: ' + ${job.terms_of_employment}"></p>&ndash;&gt;-->
+                    <!-- Boarder around the list of jobs  -->
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200 flex justify-between items-center">
 
-<!--                    <div class="bg-gray-50 p-4 rounded border border-gray-200 flex justify-between items-center">-->
-<!--                        <div>-->
-<!--                            <h3 class="text-lg font-medium text-gray-900">Backend Developer @ CodeBase</h3>-->
-<!--                            <p class="text-sm text-gray-600">Barcelona, Full-time</p>-->
-<!--                        </div>-->
+                    <ul>
+                        <li th:each="job : ${jobs}">
+                            <h2 th:text="${job.jobTitle}">Job Title</h2>
+                            <p><strong>Company:</strong> <span th:text="${job.companyName}">Company Name</span></p>
+                            <p><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
+                            <p><strong>Description:</strong> <span th:text="${job.jobDescription}">Description</span></p>
+                            <p><strong>Terms:</strong> <span th:text="${job.termsOfEmployment}">Terms</span></p>
+                            <hr>
+                        </li>
+                    </ul>
+                    </div>
+            </section>
+        </div>
+    </main>
+</div>
 
-<!--                        &lt;!&ndash; Repeat similar blocks for each job in your list &ndash;&gt;-->
-<!--                        <div class="bg-gray-50 p-4 rounded border border-gray-200 flex justify-between items-center">-->
-<!--                            <div>-->
-<!--                                <h3 class="text-lg font-medium text-gray-900">UI/UX Designer Internship @ PixelPro</h3>-->
-<!--                                <p class="text-sm text-gray-600">Remote, Internship</p>-->
-<!--                            </div>-->
-<!--                            <button class="text-red-500 hover:text-red-700" title="Save Job">-->
-<!--                                ❤️-->
-<!--                            </button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-
-<!--&lt;!&ndash;                    MAYBE WE CAN ADD IT LATER&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="mt-4">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a href="/jobs/recommended" class="text-blue-600 text-sm hover:underline">See recommended jobs</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--            </section>-->
-
-
-
-<!--&lt;!&ndash;BACK UP FOR STELLE&ndash;&gt;-->
-<!--&lt;!&ndash;                <div th:each="job : ${jobs}" class="bg-white p-4 rounded-lg shadow flex justify-between items-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <p class="text-lg font-semibold text-gray-800" th:text="${job.description}">Job Description</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        &lt;!&ndash; Add more fields as needed &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <form th:action="@{'/jobs/save/' + ${job.id}}" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <button class="text-red-500 hover:text-red-700 text-xl" title="Save Job">❤️</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <div class="mt-4">&ndash;&gt;-->
-<!--&lt;!&ndash;            <a href="/jobs" class="text-blue-600 hover:underline mr-4">📂 HERE IS THE LIST</a>&ndash;&gt;-->
-<!--&lt;!&ndash;            <span th:if="${#authorization.expression('hasRole(''ADMIN'')')}">&ndash;&gt;-->
-<!--&lt;!&ndash;        <a href="/jobs/new" class="text-green-600 hover:underline">➕ Post New Job</a>&ndash;&gt;-->
-<!--&lt;!&ndash;      </span>&ndash;&gt;-->
-<!--        </div>-->
-<!--    </main>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;FOOTER&ndash;&gt;-->
-<!--<footer class="bg-white py-8 shadow-inner">-->
-<!--    <div class="mt-4 text-center text-sm">-->
-<!--        <a th:href="@{/jobs(lang=en)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.english}">🇬🇧 English</a>-->
-<!--        <span class="text-gray-400">|</span>-->
-<!--        <a th:href="@{/jobs(lang=sv)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.swedish}">🇸🇪 Svenska</a>-->
-<!--    </div>-->
-<!--</footer>-->
-<!--</body>-->
-<!--</html>-->
+<!--FOOTER-->
+<footer class="bg-white py-8 shadow-inner">
+    <div class="mt-4 text-center text-sm">
+        <a th:href="@{/jobs(lang=en)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.english}">🇬🇧 English</a>
+        <span class="text-gray-400">|</span>
+        <a th:href="@{/jobs(lang=sv)}" class="text-gray-600 hover:text-gray-900 mx-2" th:text="#{language.swedish}">🇸🇪 Svenska</a>
+    </div>
+</footer>
+</body>
+</html>
