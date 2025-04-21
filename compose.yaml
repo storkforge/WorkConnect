@@ -7,3 +7,9 @@ services:
       - 'POSTGRES_USER=myuser'
     ports:
       - '5432:5432'
+
+  redis:
+    image: redis:latest
+    container_name: workingworkconnect-redis
+    ports:
+      - "6379:6379"
