@@ -19,6 +19,8 @@ import se.iths.java24.spring25.repository.SavedJobRepository;
 import se.iths.java24.spring25.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class JobOpportunityWebController {
@@ -60,6 +62,20 @@ public class JobOpportunityWebController {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    @GetMapping("/jobs")
+    public String showJobs(Model model) {
+        UserEntity user = getCurrentUser();
+        List<JobOpportunityEntity> jobs = jobRepo.findAll();
+
+        List<SavedJob> savedJobs = savedJobRepo.findByUser(user);
+        Set<Long> savedJobIds = savedJobs.stream()
+                .map(savedJob -> savedJob.getJob().getId())
+                .collect(Collectors.toSet());
+
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("savedJobIds", savedJobIds);
+        return "jobs";
+    }
 
 
     @PostMapping("/jobs/save/{id}")
