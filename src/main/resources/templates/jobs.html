@@ -79,11 +79,15 @@
 
                             <!-- Save Button -->
                             <form th:action="@{'/jobs/save/' + ${job.id}}" method="post" th:if="${!savedJobIds.contains(job.id)}">
-                                <button type="submit">❤️ Save</button>
+                                <button type="submit">🤍 Save</button>
 <!--                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
                             </form>
-                            <button type="button" disabled th:if="${savedJobIds.contains(job.id)}">✅ Saved</button>
-                            <h1></h1>
+
+                            <!-- If already saved, show Unsave button -->
+                            <form th:action="@{'/jobs/unsave/' + ${job.id}}" method="post" th:if="${savedJobIds.contains(job.id)}">
+                                <button type="submit">❤️ Saved</button>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            </form>
 
                             <!-- Apply Button (only show if not already applied) -->
                             <form th:action="@{'/jobs/apply/' + ${job.id}}" method="post" th:if="${!appliedJobIds.contains(job.id)}">

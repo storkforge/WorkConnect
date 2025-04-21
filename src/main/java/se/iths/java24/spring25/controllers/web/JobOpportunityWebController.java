@@ -1,6 +1,7 @@
 package se.iths.java24.spring25.controllers.web;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -138,5 +139,16 @@ public class JobOpportunityWebController {
 
         model.addAttribute("appliedJobs", jobs);
         return "applied-jobs";
+    }
+
+    @Transactional
+    @PostMapping("/jobs/unsave/{id}")
+    public String unSaveJob(@PathVariable Long id) {
+        UserEntity user = getCurrentUser();
+        JobOpportunityEntity job = jobRepo.findById(id).orElseThrow();
+
+        savedJobRepo.deleteByUserAndJob(user, job);
+
+        return "redirect:/jobs";
     }
 }
