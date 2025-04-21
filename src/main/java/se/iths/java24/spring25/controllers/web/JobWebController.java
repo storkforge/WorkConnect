@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.iths.java24.spring25.repository.JobOpportunityRepository;
 import se.iths.java24.spring25.service.JobOpportunityService;
@@ -34,12 +35,6 @@ public class JobWebController {
         model.addAttribute("jobOpportunity", new JobOpportunityEntity());
         return "jobRegister"; // jobs/jobregistration.html in templates folder
     }
-
-//    @PostMapping("/jobs/jobregistration")
-//    public String submitForm(@ModelAttribute JobOpportunityEntity jobOpportunity) {
-//        jobOpportunityRepository.save(jobOpportunity);
-//        return "redirect:/jobs/jobSuccess"; // see vist VALE!!!
-//    }
 
     @PostMapping("/jobs/jobregistration")
     public String submitForm(@ModelAttribute JobOpportunityEntity jobOpportunity, Model model) {

@@ -68,3 +68,18 @@ main {
     text-decoration: none;
     border-radius: 4px;
 }
+button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:first-of-type {
+    background-color: #955c5c;
+}
+
+button[type="submit"]:last-of-type {
+    background-color: #ddffdd;
+}
