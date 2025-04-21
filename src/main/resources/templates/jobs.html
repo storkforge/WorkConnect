@@ -133,7 +133,7 @@
                 </h2>
                 <a href="/jobs/jobregistration" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm flex items-center">
                     <i class="fas fa-plus-circle mr-1"></i>
-                    <span th:text="'+ ' + #{jobs.register}"> Register New Job</span>
+                    <span th:text=" #{jobs.register}"> Register New Job</span>
                 </a>
             </div>
 
@@ -208,7 +208,6 @@
                             </button>
                             </form>
 
-
                             <!-- If already saved, show Unsave button -->
                             <form th:action="@{'/jobs/unsave/' + ${job.id}}" method="post" th:if="${savedJobIds.contains(job.id)}">
                                 <button type="submit">❤️ Saved</button>
@@ -217,8 +216,18 @@
 
 
                             <!--Apply Button -->
+                            <form th:action="@{'/jobs/apply/' + ${job.id}}" method="post" th:if="${!appliedJobIds.contains(job.id)}">
                             <button class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm transition apply-job-btn" data-job-id="${job.id}">
                                 <i class="fas fa-paper-plane mr-1"></i> <span th:text="#{jobs.apply}">Apply</span>
+                            </button>
+                                </form>
+
+                            <!-- Applied Button (disabled if already applied) -->
+                            <button type="button"
+                                    disabled
+                                    th:if="${appliedJobIds.contains(job.id)}"
+                                    class="px-3 py-1 bg-gray-400 text-white rounded-md text-sm transition cursor-not-allowed opacity-70">
+                                    <i class="fas fa-paper-plane mr-1"></i> Applied
                             </button>
                         </div>
                     </div>
