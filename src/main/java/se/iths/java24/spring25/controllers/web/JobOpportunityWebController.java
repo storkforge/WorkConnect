@@ -67,13 +67,21 @@ public class JobOpportunityWebController {
         UserEntity user = getCurrentUser();
         List<JobOpportunityEntity> jobs = jobRepo.findAll();
 
+        // Saved Jobs
         List<SavedJob> savedJobs = savedJobRepo.findByUser(user);
         Set<Long> savedJobIds = savedJobs.stream()
                 .map(savedJob -> savedJob.getJob().getId())
                 .collect(Collectors.toSet());
 
+        // Applied jobs
+        List<JobApplication> appliedJobs = jobAppRepo.findByUser(user);
+        Set<Long> appliedJobIds = appliedJobs.stream()
+                .map(app -> app.getJob().getId())
+                .collect(Collectors.toSet());
+
         model.addAttribute("jobs", jobs);
         model.addAttribute("savedJobIds", savedJobIds);
+        model.addAttribute("appliedJobIds", appliedJobIds);
         return "jobs";
     }
 
