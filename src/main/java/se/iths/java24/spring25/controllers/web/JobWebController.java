@@ -23,12 +23,12 @@ public class JobWebController {
         this.jobOpportunityRepository = jobOpportunityRepository;
     }
 
-    @GetMapping("/jobs")
-    public String showJobs(Model model) {
-        List<JobOpportunityEntity> jobs = jobOpportunityRepository.findAll();
-        model.addAttribute("jobs", jobs);
-        return "jobs"; // This will map to a Thymeleaf template named jobs.html
-    }
+//    @GetMapping("/jobs")
+//    public String showJobs(Model model) {
+//        List<JobOpportunityEntity> jobs = jobOpportunityRepository.findAll();
+//        model.addAttribute("jobs", jobs);
+//        return "jobs"; // This will map to a Thymeleaf template named jobs.html
+//    }
 
     @GetMapping("/jobs/jobregistration")
     public String showJobRegistrationForm(Model model) {

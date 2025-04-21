@@ -1,6 +1,10 @@
 package se.iths.java24.spring25.controllers.web;
 
 
+import jakarta.transaction.Transactional;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,31 +17,75 @@ import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.JobApplicationRepository;
 import se.iths.java24.spring25.repository.JobOpportunityRepository;
 import se.iths.java24.spring25.repository.SavedJobRepository;
+import se.iths.java24.spring25.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class JobOpportunityWebController {
     private final JobOpportunityRepository jobRepo;
     private final SavedJobRepository savedJobRepo;
     private final JobApplicationRepository jobAppRepo;
+    private final UserRepository userRepository;
 
     public JobOpportunityWebController(
             JobOpportunityRepository jobRepo,
             SavedJobRepository savedJobRepo,
-            JobApplicationRepository jobAppRepo) {
+            JobApplicationRepository jobAppRepo, UserRepository userRepository) {
         this.jobRepo = jobRepo;
         this.savedJobRepo = savedJobRepo;
         this.jobAppRepo = jobAppRepo;
+        this.userRepository = userRepository;
     }
 
-    // Dummy user for now
+//    // Dummy user for now
+//    private UserEntity getCurrentUser() {
+//        UserEntity user = new UserEntity();
+//        user.setId(1L);
+//        user.setName("testuser");
+//        return user;
+//    }
+
+
     private UserEntity getCurrentUser() {
-        UserEntity user = new UserEntity();
-        user.setId(1L);
-        user.setName("testuser");
-        return user;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String email;
+        if (principal instanceof UserDetails userDetails) {
+            email = userDetails.getUsername(); // Spring stores username as email
+        } else {
+            email = principal.toString();
+        }
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
+    @GetMapping("/jobs")
+    public String showJobs(Model model) {
+        UserEntity user = getCurrentUser();
+        List<JobOpportunityEntity> jobs = jobRepo.findAll();
+
+        // Saved Jobs
+        List<SavedJob> savedJobs = savedJobRepo.findByUser(user);
+        Set<Long> savedJobIds = savedJobs.stream()
+                .map(savedJob -> savedJob.getJob().getId())
+                .collect(Collectors.toSet());
+
+        // Applied jobs
+        List<JobApplication> appliedJobs = jobAppRepo.findByUser(user);
+        Set<Long> appliedJobIds = appliedJobs.stream()
+                .map(app -> app.getJob().getId())
+                .collect(Collectors.toSet());
+
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("savedJobIds", savedJobIds);
+        model.addAttribute("appliedJobIds", appliedJobIds);
+        return "jobs";
+    }
+
 
     @PostMapping("/jobs/save/{id}")
     public String saveJob(@PathVariable Long id) {
@@ -64,7 +112,6 @@ public class JobOpportunityWebController {
             application.setJob(job);
             jobAppRepo.save(application);
         }
-
         return "redirect:/jobs";
     }
 
@@ -72,11 +119,7 @@ public class JobOpportunityWebController {
     public String showSavedJobs(Model model) {
         UserEntity user = getCurrentUser(); // simulate or get from logged-in session
 
-//        List<SavedJob> savedJobs = savedJobRepo.findByUser(user);
-        List<SavedJob> savedJobs = (List<SavedJob>) (List<?>) savedJobRepo.findByUser(user);
-
-
-        // Extract just the job opportunity from each saved job
+        List<SavedJob> savedJobs = savedJobRepo.findByUser(user);
         List<JobOpportunityEntity> jobs = savedJobs.stream()
                 .map(SavedJob::getJob)
                 .toList();
@@ -89,10 +132,7 @@ public class JobOpportunityWebController {
     public String showAppliedJobs(Model model) {
         UserEntity user = getCurrentUser(); // simulate or get from logged-in session
 
-        List<JobApplication> appliedJobs = (List<JobApplication>) (List<?>) jobAppRepo.findByUser(user);
-
-
-        // Extract just the job opportunity from each saved job
+        List<JobApplication> appliedJobs = jobAppRepo.findByUser(user);
         List<JobOpportunityEntity> jobs = appliedJobs.stream()
                 .map(JobApplication::getJob)
                 .toList();
@@ -101,4 +141,14 @@ public class JobOpportunityWebController {
         return "applied-jobs";
     }
 
+    @Transactional
+    @PostMapping("/jobs/unsave/{id}")
+    public String unSaveJob(@PathVariable Long id) {
+        UserEntity user = getCurrentUser();
+        JobOpportunityEntity job = jobRepo.findById(id).orElseThrow();
+
+        savedJobRepo.deleteByUserAndJob(user, job);
+
+        return "redirect:/jobs";
+    }
 }

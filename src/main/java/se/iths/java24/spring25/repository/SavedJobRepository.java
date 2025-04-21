@@ -8,5 +8,5 @@ import java.util.List;
 public interface SavedJobRepository extends JpaRepository<SavedJob, Long> {
     boolean existsByUserAndJob(UserEntity user, JobOpportunityEntity job);
     List<SavedJob> findByUser(UserEntity user);
-
+    void deleteByUserAndJob(UserEntity user, JobOpportunityEntity job);
 }
