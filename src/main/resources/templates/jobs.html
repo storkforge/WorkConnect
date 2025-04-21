@@ -199,13 +199,13 @@
                         <div class="text-sm text-gray-500">
                             <i class="far fa-clock mr-1"></i> <span th:text="#{jobs.posted}">Posted</span> 2 days ago
                         </div>
-                        <div class="flex space-x-2">
-                            <button class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm transition">
+                        <div class="flex space-x-4">
+                            <button class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm transition save-job-btn" data-job-id="${job.id}">
                                 <i class="far fa-bookmark mr-1"></i> <span th:text="#{jobs.save.button}">Save</span>
                             </button>
-                            <a href="#" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm transition">
+                            <button class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm transition apply-job-btn" data-job-id="${job.id}">
                                 <i class="fas fa-paper-plane mr-1"></i> <span th:text="#{jobs.apply}">Apply</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -237,22 +237,6 @@
         });
     });
 </script>
-
-<!-- Update the buttons in the job listings -->
-<div class="mt-4 flex justify-between items-center">
-    <div class="text-sm text-gray-500">
-        <i class="far fa-clock mr-1"></i> <span th:text="#{jobs.posted}">Posted</span> 2 days ago
-    </div>
-    <div class="flex space-x-2">
-        <button class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm transition save-job-btn" data-job-id="${job.id}">
-            <i class="far fa-bookmark mr-1"></i> <span th:text="#{jobs.save.button}">Save</span>
-        </button>
-        <button class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm transition apply-job-btn" data-job-id="${job.id}">
-            <i class="fas fa-paper-plane mr-1"></i> <span th:text="#{jobs.apply}">Apply</span>
-        </button>
-    </div>
-</div>
-
 
 <!-- FOOTER -->
 <footer class="bg-white py-8 shadow-inner border-t border-gray-200">
