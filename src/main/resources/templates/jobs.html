@@ -42,11 +42,6 @@
             </div>
             <h3 class="font-bold text-center text-xl mb-1" th:text="${user?.name}">Your Name</h3>
             <p class="text-center text-sm text-gray-500 mb-3" th:text="${user?.email}">you@example.com</p>
-            <div class="flex justify-center mt-4">
-                <a href="/profile" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm hover:bg-blue-100 transition">
-                    <i class="fas fa-edit mr-1"></i> <span th:text="#{profile.overview}">Edit Profile</span>
-                </a>
-            </div>
         </div>
 
         <!-- Job Search Resources -->
@@ -152,6 +147,32 @@
                 </div>
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Saved Jobs Card -->
+                <a href="/saved-jobs"
+                   class="block bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-2xl hover:scale-[1.02] hover:border-blue-500 transition-all duration-300 ease-in-out">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-bookmark text-blue-600 text-3xl"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800" th:text="#{dashboard.savedJobs}">Saved Jobs</h3>
+                            <p class="text-sm text-gray-600" th:text="#{dashboard.savedJobsDesc}">Jobs you’ve bookmarked</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Applied Jobs Card -->
+                <a href="/applied-jobs"
+                   class="block bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-2xl hover:scale-[1.02] hover:border-green-500 transition-all duration-300 ease-in-out">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-paper-plane text-green-600 text-3xl"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800" th:text="#{dashboard.appliedJobs}">Applied Jobs</h3>
+                            <p class="text-sm text-gray-600" th:text="#{dashboard.appliedJobsDesc}">Track your applications</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
             <!-- Jobs List -->
             <div class="space-y-4">
                 <div th:each="job : ${jobs}" class="bg-white p-5 rounded-lg border border-gray-200 hover:shadow-md transition duration-300 transform hover:-translate-y-1">
@@ -192,6 +213,46 @@
         </div>
     </main>
 </div>
+
+<!-- Saved button and Apply -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.save-job-btn, .apply-job-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const jobId = this.dataset.jobId;
+                const action = this.classList.contains('save-job-btn') ? 'save' : 'apply';
+
+                fetch(`/jobs/${action}/${jobId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    });
+</script>
+
+<!-- Update the buttons in the job listings -->
+<div class="mt-4 flex justify-between items-center">
+    <div class="text-sm text-gray-500">
+        <i class="far fa-clock mr-1"></i> <span th:text="#{jobs.posted}">Posted</span> 2 days ago
+    </div>
+    <div class="flex space-x-2">
+        <button class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm transition save-job-btn" data-job-id="${job.id}">
+            <i class="far fa-bookmark mr-1"></i> <span th:text="#{jobs.save.button}">Save</span>
+        </button>
+        <button class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm transition apply-job-btn" data-job-id="${job.id}">
+            <i class="fas fa-paper-plane mr-1"></i> <span th:text="#{jobs.apply}">Apply</span>
+        </button>
+    </div>
+</div>
+
 
 <!-- FOOTER -->
 <footer class="bg-white py-8 shadow-inner border-t border-gray-200">
