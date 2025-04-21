@@ -133,7 +133,7 @@
                 </h2>
                 <a href="/jobs/jobregistration" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm flex items-center">
                     <i class="fas fa-plus-circle mr-1"></i>
-                    <span th:text="'+ ' + #{jobs.register}">+ Register New Job</span>
+                    <span th:text="'+ ' + #{jobs.register}"> Register New Job</span>
                 </a>
             </div>
 
@@ -148,8 +148,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                 <!-- Saved Jobs Card -->
-                <a href="/saved-jobs"
+                <a href="/jobs/saved"
                    class="block bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-2xl hover:scale-[1.02] hover:border-blue-500 transition-all duration-300 ease-in-out">
                     <div class="flex items-center space-x-4">
                         <i class="fas fa-bookmark text-blue-600 text-3xl"></i>
@@ -161,7 +162,7 @@
                 </a>
 
                 <!-- Applied Jobs Card -->
-                <a href="/applied-jobs"
+                <a href="/jobs/applied"
                    class="block bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-2xl hover:scale-[1.02] hover:border-green-500 transition-all duration-300 ease-in-out">
                     <div class="flex items-center space-x-4">
                         <i class="fas fa-paper-plane text-green-600 text-3xl"></i>
