@@ -33,4 +33,14 @@ public class DashboardController {
         model.addAttribute("message", "You have been logged out successfully.");
         return "logout"; // ⬅️ logout.html Thymeleaf-sida
     }
+
+    @GetMapping("/saved-jobs")
+    public String showSavedJobs() {
+        return "saved-jobs";
+    }
+
+    @GetMapping("/applied-jobs")
+    public String showAppliedJobs() {
+        return "applied-jobs";
+    }
 }

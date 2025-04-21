@@ -2,20 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Applied Jobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Applied Jobs</h1>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
 
-<ul>
-    <li th:each="job : ${appliedJobs}">
-        <h2 th:text="${job.jobTitle}">Job Title</h2>
-        <p><strong>Company:</strong> <span th:text="${job.companyName}">Company</span></p>
-        <p><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
-        <p><strong>Description:</strong> <span th:text="${job.jobDescription}">Description</span></p>
-        <hr>
-    </li>
-</ul>
+<div class="max-w-4xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-bold text-center mb-8">Applied Jobs</h1>
 
-<a href="/jobs">← Back to All Jobs</a>
+    <ul class="space-y-6">
+        <li th:each="job : ${appliedJobs}" class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold text-blue-600" th:text="${job.jobTitle}">Job Title</h2>
+            <p class="mt-2"><strong>Company:</strong> <span th:text="${job.companyName}">Company</span></p>
+            <p class="mt-1"><strong>Location:</strong> <span th:text="${job.location}">Location</span></p>
+            <p class="mt-1"><strong>Description:</strong> <span th:text="${job.jobDescription}">Description</span></p>
+            <hr class="my-4">
+        </li>
+    </ul>
+
+    <div class="mt-8 text-center">
+        <a href="/jobs" class="text-blue-600 hover:underline"> Back to All Jobs</a>
+    </div>
+</div>
+
 </body>
 </html>
