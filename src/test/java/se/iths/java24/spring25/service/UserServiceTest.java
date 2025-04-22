@@ -12,6 +12,7 @@ import se.iths.java24.spring25.entity.Role;
 import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,6 +82,16 @@ class UserServiceTest {
         });
 
         assertEquals("Email already exists", exception.getMessage());
+    }
+    @Test
+    void getAllUsersShouldReturnAllUsers() {
+        when(userRepository.findAll()).thenReturn(List.of(
+                new UserEntity("User1", "user1@example.com", "password1", Role.USER),
+                new UserEntity("User2", "user2@example.com", "password2", Role.USER)
+        ));
+
+        List<UserEntity> users = userService.getAllUsers();
+        assertEquals(2, users.size());
     }
 
 }
