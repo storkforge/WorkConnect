@@ -103,5 +103,12 @@ class UserServiceTest {
         assertTrue(result.isPresent());
         assertEquals(user, result.get());
     }
+    @Test
+    void getUserByIdShouldReturnEmptyWhenUserDoesNotExist() {
+        Long userId = 1L;
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+        Optional<UserEntity> result = userService.getUserById(userId);
+        assertFalse(result.isPresent());
+    }
 
 }
