@@ -69,6 +69,7 @@ class UserServiceTest {
 
         assertEquals("Email is not valid", exception.getMessage());
     }
+
     @Test
     void registerUserShouldThrowExceptionWhenEmailAlreadyExists() {
         String name = "John Doe";
@@ -83,6 +84,7 @@ class UserServiceTest {
 
         assertEquals("Email already exists", exception.getMessage());
     }
+
     @Test
     void getAllUsersShouldReturnAllUsers() {
         when(userRepository.findAll()).thenReturn(List.of(
@@ -93,6 +95,7 @@ class UserServiceTest {
         List<UserEntity> users = userService.getAllUsers();
         assertEquals(2, users.size());
     }
+
     @Test
     void getUserByIdShouldReturnUserWhenUserExists() {
         Long userId = 1L;
@@ -103,6 +106,7 @@ class UserServiceTest {
         assertTrue(result.isPresent());
         assertEquals(user, result.get());
     }
+
     @Test
     void getUserByIdShouldReturnEmptyWhenUserDoesNotExist() {
         Long userId = 1L;
@@ -111,4 +115,10 @@ class UserServiceTest {
         assertFalse(result.isPresent());
     }
 
+    @Test
+    void deleteUserShouldCallDeleteById() {
+        Long userId = 1L;
+        userService.deleteUser(userId);
+        verify(userRepository).deleteById(userId);
+    }
 }
