@@ -1,4 +1,5 @@
 package se.iths.java24.spring25.service;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -10,8 +11,10 @@ import se.iths.java24.spring25.entity.AuthProvider;
 import se.iths.java24.spring25.entity.Role;
 import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.UserRepository;
+
 import java.util.List;
 import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -52,6 +55,19 @@ class UserServiceTest {
         assertEquals("hashedPassword", savedUser.getPassword());
         assertEquals(Role.USER, savedUser.getRole());
         assertEquals(AuthProvider.LOCAL, savedUser.getProvider());
+    }
+
+    @Test
+    void registerUserShouldThrowExceptionWhenEmailIsInvalid() {
+        String name = "John Doe";
+        String email = "invalid-email";
+        String password = "securepassword";
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            userService.registerUser(name, email, password);
+        });
+
+        assertEquals("Email is not valid", exception.getMessage());
     }
 
 }
