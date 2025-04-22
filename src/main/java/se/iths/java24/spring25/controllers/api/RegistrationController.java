@@ -33,7 +33,7 @@ public class RegistrationController {
 
         try {
             userService.registerUser(name, email, password);
-            return "redirect:/login?registered";
+            return "redirect:/register-success";
         } catch (RuntimeException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             return "redirect:/register";

@@ -43,4 +43,9 @@ public class DashboardController {
     public String showAppliedJobs() {
         return "applied-jobs";
     }
+
+    @GetMapping("/register-success")
+    public String showRegisterSuccess() {
+        return "register-success";
+    }
 }
