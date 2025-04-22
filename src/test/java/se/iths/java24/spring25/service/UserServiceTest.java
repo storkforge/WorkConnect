@@ -12,7 +12,6 @@ import se.iths.java24.spring25.entity.Role;
 import se.iths.java24.spring25.entity.UserEntity;
 import se.iths.java24.spring25.repository.UserRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,6 +67,20 @@ class UserServiceTest {
         });
 
         assertEquals("Email is not valid", exception.getMessage());
+    }
+    @Test
+    void registerUserShouldThrowExceptionWhenEmailAlreadyExists() {
+        String name = "John Doe";
+        String email = "john@example.com";
+        String password = "securepassword";
+        UserEntity existingUser = new UserEntity(name, email, "hashedPassword", Role.USER);
+
+        when(userRepository.findByEmail(email)).thenReturn(Optional.of(existingUser));
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            userService.registerUser(name, email, password);
+        });
+
+        assertEquals("Email already exists", exception.getMessage());
     }
 
 }
