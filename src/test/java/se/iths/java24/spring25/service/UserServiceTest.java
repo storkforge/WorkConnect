@@ -93,5 +93,15 @@ class UserServiceTest {
         List<UserEntity> users = userService.getAllUsers();
         assertEquals(2, users.size());
     }
+    @Test
+    void getUserByIdShouldReturnUserWhenUserExists() {
+        Long userId = 1L;
+        UserEntity user = new UserEntity("John Doe", "john@example.com", "hashedPassword", Role.USER);
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+        Optional<UserEntity> result = userService.getUserById(userId);
+
+        assertTrue(result.isPresent());
+        assertEquals(user, result.get());
+    }
 
 }
