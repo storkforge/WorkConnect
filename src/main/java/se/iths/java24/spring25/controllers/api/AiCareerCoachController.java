@@ -16,8 +16,18 @@ public class AiCareerCoachController {
 
     @PostMapping
     @Cacheable("careerCoachCache")
-    public String chatWithAi(@RequestBody String prompt) {
-        return chatModel.call(prompt);
-    }
+    public String chatWithAi(@RequestBody String userInput) {
+        if (userInput == null || userInput.trim().isEmpty()) {
+            return "Please enter a valid question.";
+        }
 
+        String systemPrompt = """
+            You are an AI career coach for a platform called WorkConnect.
+            Your job is to give short, clear and practical career advice, tailored to young professionals.
+            Always keep the answer under 100 words.
+            User input: %s
+            """.formatted(userInput.trim());
+
+        return chatModel.call(systemPrompt);
+    }
 }
