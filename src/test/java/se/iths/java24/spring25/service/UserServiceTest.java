@@ -63,9 +63,7 @@ class UserServiceTest {
         String email = "invalid-email";
         String password = "securepassword";
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            userService.registerUser(name, email, password);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> userService.registerUser(name, email, password));
 
         assertEquals("Email is not valid", exception.getMessage());
     }
@@ -78,9 +76,7 @@ class UserServiceTest {
         UserEntity existingUser = new UserEntity(name, email, "hashedPassword", Role.USER);
 
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(existingUser));
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            userService.registerUser(name, email, password);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> userService.registerUser(name, email, password));
 
         assertEquals("Email already exists", exception.getMessage());
     }

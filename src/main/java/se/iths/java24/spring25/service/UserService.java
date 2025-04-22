@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import se.iths.java24.spring25.entity.AuthProvider;
 import se.iths.java24.spring25.entity.Role;
 import se.iths.java24.spring25.entity.UserEntity;
@@ -24,9 +23,6 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final RestTemplate restTemplate = new RestTemplate();
-
-    private final String ABSTRACT_API_KEY = "...";
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -65,7 +61,9 @@ public class UserService {
         try {
             String url = "https://emailvalidation.abstractapi.com/v1/?api_key=" + apiKey + "&email=" + URLEncoder.encode(email, StandardCharsets.UTF_8);
             HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             JsonNode json = new ObjectMapper().readTree(response.body());
@@ -100,11 +98,4 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public RestTemplate getRestTemplate() {
-        return restTemplate;
-    }
-
-    public String getABSTRACT_API_KEY() {
-        return ABSTRACT_API_KEY;
-    }
 }
