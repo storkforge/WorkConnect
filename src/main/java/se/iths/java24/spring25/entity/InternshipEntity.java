@@ -32,7 +32,6 @@ public class InternshipEntity {
 
     private LocalDate endDate;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id")
     private EventEntity event;
@@ -50,23 +49,19 @@ public class InternshipEntity {
         ENROLLED, COMPLETED, PENDING
     }
 
-    // --- Getters & Setters ---
-
+    // --- Lifecycle Callbacks ---
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
-    public void preUpdate(){
+    public void preUpdate() {
         updatedAt = LocalDateTime.now();
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
+    // --- Getters & Setters ---
     public Long getId() {
         return id;
     }
@@ -129,5 +124,29 @@ public class InternshipEntity {
 
     public void setEvent(EventEntity event) {
         this.event = event;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
