@@ -31,4 +31,8 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepository.deleteById(id);
     }
+
+    public EventEntity updateEvent(EventEntity event) {
+        return eventRepository.save(event);
+    }
 }

@@ -18,7 +18,7 @@ public class EventEntity {
     private List<RegistrationEntity> registrations;
 
     @OneToMany(mappedBy = "event")
-    private List<JobOpportunityEntity> opportunities;
+    private List<JobOpportunityEntity> jobOpportunities;
 
     @OneToMany(mappedBy = "event")
     private List<InternshipEntity> internships;
@@ -56,12 +56,12 @@ public class EventEntity {
         this.registrations = registrations;
     }
 
-    public List<JobOpportunityEntity> getOpportunities() {
-        return opportunities;
+    public List<JobOpportunityEntity> getJobOpportunities() {
+        return jobOpportunities;
     }
 
-    public void setOpportunities(List<JobOpportunityEntity> opportunities) {
-        this.opportunities = opportunities;
+    public void setJobOpportunities(List<JobOpportunityEntity> jobOpportunities) {
+        this.jobOpportunities = jobOpportunities;
     }
 
     public List<InternshipEntity> getInternships() {

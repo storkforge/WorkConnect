@@ -51,4 +51,8 @@ public class InternshipService {
         }
         internshipRepository.deleteById(id);
     }
+
+    public InternshipEntity updateInternship(InternshipEntity internship) {
+        return internshipRepository.save(internship);
+    }
 }

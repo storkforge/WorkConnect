@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{jobs.register.title}">Register a New Job</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header, footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.6rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background-color: #3498db !important;  /* Sätt din önskade blå färg */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9 !important;  /* En mörkare blå vid hover */
+        }
+
+        button:active {
+            background-color: #1c6ea4 !important;  /* Ännu mörkare blå när knappen trycks */
+        }
+
+        .language-link {
+            color: white !important;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        .language-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 th:text="#{jobs.register.header}">Register a New Job</h1>
+</header>
+
+<main>
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+
+    <form th:action="@{/jobs/jobregistration}" th:object="${jobOpportunity}" method="post">
+        <label th:text="#{jobs.company}">Company Name:</label>
+        <input type="text" th:field="*{companyName}" />
+
+        <label th:text="#{jobs.position}">Job Title:</label>
+        <input type="text" th:field="*{jobTitle}" />
+
+        <label th:text="#{jobs.description}">Job Description:</label>
+        <input type="text" th:field="*{jobDescription}" />
+
+        <label th:text="#{jobs.location}">Location:</label>
+        <input type="text" th:field="*{location}" />
+
+        <label th:text="#{jobs.terms}">Terms of Employment:</label>
+        <input type="text" th:field="*{termsOfEmployment}" />
+
+        <button type="submit" th:text="#{jobs.register.button}">Register</button>
+    </form>
+</main>
+
+<footer>
+    <div class="mt-4 text-center text-sm">
+        <a th:href="@{/jobs/jobregistration(lang='en')}" class="language-link" th:text="#{language.english}">🇬🇧 English</a>
+        <span>|</span>
+        <a th:href="@{/jobs/jobregistration(lang='sv')}" class="language-link" th:text="#{language.swedish}">🇸🇪 Svenska</a>
+    </div>
+</footer>
+
+</body>
+</html>
