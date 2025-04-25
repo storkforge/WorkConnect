@@ -89,9 +89,31 @@
                     <i class="fab fa-facebook text-xl"></i>
                 </a>
             </div>
+
+            <!-- Tema-knapp -->
+            <div class="mt-6">
+                <button id="theme-toggle-btn"
+                        class="bg-gray-200 text-gray-800 px-6 py-2 rounded-full hover:bg-gray-300 transition-all">
+                    Växla Tema
+                </button>
+            </div>
         </div>
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+        const button = document.getElementById("theme-toggle-btn");
+
+        button.addEventListener("click", function () {
+            body.classList.toggle("bg-gray-50");
+            body.classList.toggle("bg-gray-900");
+            body.classList.toggle("text-gray-900");
+            body.classList.toggle("text-white");
+        });
+    });
+</script>
 
 </body>
 </html>
